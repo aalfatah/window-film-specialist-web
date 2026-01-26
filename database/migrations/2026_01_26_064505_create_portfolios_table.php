@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->onDelete('cascade');
+            $table->foreignId('service_id')
+                  ->constrained('services')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
             $table->string('title');
             $table->string('image_path');
             $table->text('description')->nullable();
             $table->date('completion_date')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
