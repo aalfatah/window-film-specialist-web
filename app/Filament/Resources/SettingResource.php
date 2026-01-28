@@ -19,23 +19,29 @@ class SettingResource extends Resource
     protected static ?string $model = Setting::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationLabel = 'Pengaturan Web';
+    protected static ?string $navigationGroup = 'Pengaturan Sistem';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('key')
-                    ->label('Nama Pengaturan (Key)')
-                    ->required()
-                    ->placeholder('contoh: whatsapp_number atau alamat_kantor')
-                    ->unique(ignoreRecord: true)
+                Forms\Components\Section::make('Detail Pengaturan')
+                ->description('Kelola pengaturan utama untuk website seperti nomor WhatsApp, alamat kantor, dll.')
+                ->schema([
+                    Forms\Components\TextInput::make('key')
+                        ->label('Nama Pengaturan (Key)')
+                        ->required()
+                        ->placeholder('contoh: whatsapp_number atau alamat_kantor')
+                        ->unique(ignoreRecord: true)
                     ->helperText('Gunakan huruf kecil dan garis bawah (underscore) tanpa spasi.'),
                 
-                Forms\Components\Textarea::make('value')
-                    ->label('Isi/Nilai')
-                    ->required()
-                    ->rows(3)
-                    ->placeholder('Masukkan isi pengaturannya di sini'),
+                    Forms\Components\Textarea::make('value')
+                        ->label('Isi/Nilai')
+                        ->required()
+                        ->rows(3)
+                        ->placeholder('Masukkan isi pengaturannya di sini Contoh: Untuk WA gunakan format 628123456789. Untuk alamat, masukkan alamat lengkap kantor.'),
+                ])->columns(1),
             ]);
     }
 

@@ -29,6 +29,8 @@ class PortfolioResource extends Resource
     protected static ?string $model = Portfolio::class;
     protected static ?string $navigationIcon = 'heroicon-o-camera';
     protected static ?string $navigationLabel = 'Portofolio';
+    protected static ?string $navigationGroup = 'Manajemen Konten';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

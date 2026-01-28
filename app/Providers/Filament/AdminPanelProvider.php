@@ -16,7 +16,9 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\App;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\StatsOverview;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -27,9 +29,23 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            // 1. Ganti Judul & Logo
+            ->brandName('Fatih Jaya Admin')
+            ->brandLogo(asset('images/logo-brandname.png'))
+            ->brandLogoHeight('5rem')
+            ->favicon(asset('favicon.ico'))
+
+            ->profile()
+            // ->darkMode(false)
+            // 2. Ganti Tema Warna (Gunakan warna brand PT Fatih)
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Slate,
+                'danger' => Color::Rose,
+                'success' => Color::Emerald,
             ])
+            ->sidebarCollapsibleOnDesktop()
+            ->font('Plus Jakarta Sans')
+            
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -38,7 +54,8 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\FilamentInfoWidget::class
+                StatsOverview::class,
             ])
             ->middleware([
                 EncryptCookies::class,
