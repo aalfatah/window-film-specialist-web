@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $settings['site_name'] ?? 'PT Fatih Jaya Film' }} - Spesialis Kaca Film</title>
+    <title>@yield('title') {{ $settings['site_name'] ?? 'PT Fatih Jaya Film' }} - Spesialis Kaca Film</title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,17 +25,12 @@
                         }
                     },
                     animation: {
-                        'marquee': 'marquee 40s linear infinite',
-                        'marquee2': 'marquee 40s linear infinite',
+                        'marquee': 'marquee 30s linear infinite',
                     },
                     keyframes: {
                         marquee: {
                             '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        },
-                        marquee2: {
-                            '0%': { transform: 'translateX(100%)' },
-                            '100%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
                         }
                     }
                 }
@@ -43,6 +38,7 @@
         }
     </script>
     <style>
+        [x-cloak] { display: none !important; }
         /* Hide scrollbar for neatness */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -63,48 +59,48 @@
          @scroll.window="scrolled = (window.pageYOffset > 20)"
          :class="scrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'"
          class="fixed w-full top-0 z-20 transition-all duration-300">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            {{-- <a href="#" class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">F</div>
-                <span :class="scrolled ? 'text-slate-800' : 'text-white'" class="font-bold text-xl tracking-wide">
-                    Fatih<span class="text-brand-primary">Jaya</span>
-                </span>
-            </a> --}}
-
-            <a href="#" class="flex items-center gap-2">
-                <img src="{{asset('images/logo-brandname.png')}}" 
-                    alt="Logo Fatih Jaya Film" 
-                    class="h-14 w-auto object-contain">
-                
-                {{-- <span :class="scrolled ? 'text-slate-800' : 'text-white'" class="font-bold text-xl tracking-wide">
-                    Fatih<span class="text-brand-primary">Jaya</span>
+        <div class="container mx-auto px-6 py-0 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <img src="{{ asset('images/logo-brandname.png') }}" 
+                    alt="Fatih Jaya Film" 
+                    class="h-10 w-auto">
+                {{-- <span class="font-bold text-xl tracking-tight text-brand-dark hidden sm:block">
+                    FATIH JAYA <span class="text-brand-primary">FILM</span>
                 </span> --}}
             </a>
 
-            <div class="hidden md:flex space-x-8">
-                @foreach(['Tentang', 'Layanan', 'Portfolio', 'Kontak'] as $item)
-                <a href="#{{ strtolower($item) }}" 
-                   :class="scrolled ? 'text-slate-600 hover:text-brand-primary' : 'text-gray-300 hover:text-white'"
-                   class="font-medium transition">{{ $item }}</a>
-                @endforeach
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#tentang" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">Tentang</a>
+                <a href="#layanan" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">Layanan</a>
+                <a href="#portfolio" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">Portfolio</a>
+                <a href="#kontak" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">Kontak</a>
+                
+                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '' }}" 
+                class="bg-brand-dark text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-brand-primary transition shadow-lg shadow-brand-primary/20">
+                    Konsultasi Gratis
+                </a>
             </div>
 
-            <button @click="open = !open" class="md:hidden text-brand-primary focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <button @click="open = !open" class="md:hidden text-brand-dark focus:outline-none">
+                <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg x-show="open" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
 
-        <div x-show="open" @click.away="open = false" class="md:hidden bg-white shadow-lg absolute w-full top-full left-0">
+        <div x-show="open" x-cloak @click.away="open = false" class="md:hidden bg-white border-t border-gray-100 shadow-xl">
             <div class="flex flex-col p-6 space-y-4">
-                <a href="#tentang" class="text-slate-600 font-medium">Tentang</a>
-                <a href="#layanan" class="text-slate-600 font-medium">Layanan</a>
-                <a href="#portfolio" class="text-slate-600 font-medium">Portfolio</a>
-                <a href="#kontak" class="text-brand-primary font-bold">Hubungi Kami</a>
+                <a href="#tentang" @click="open = false" class="text-gray-600 font-semibold">Tentang</a>
+                <a href="#layanan" @click="open = false" class="text-gray-600 font-semibold">Layanan</a>
+                <a href="#portfolio" @click="open = false" class="text-gray-600 font-semibold">Portfolio</a>
+                <a href="#kontak" @click="open = false" class="text-gray-600 font-semibold">Kontak</a>
+                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '' }}" class="bg-brand-dark text-white text-center py-3 rounded-full font-bold">
+                    Konsultasi Gratis
+                </a>
             </div>
         </div>
     </nav>
 
-    <section class="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden">
+    <section class="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="{{ asset('images/hero.png') }}" 
                  class="w-full h-full object-cover" alt="Background Mobil Mewah">
@@ -134,40 +130,57 @@
         </div>
     </section>
 
-    <section class="bg-white py-10 border-b overflow-hidden">
-        <div class="container mx-auto px-6 mb-4 text-center">
-            <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest">Brand Kaca Film Yang Tersedia</p>
+    <section class="bg-white py-8 border-b overflow-hidden">
+        <div class="container mx-auto px-6 mb-6 text-center">
+            <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest">Brand Kaca Film</p>
         </div>
 
-        <div class="relative w-full flex overflow-x-hidden group">
-            <div class="animate-marquee whitespace-nowrap flex items-center">
-                @for ($i = 0; $i < 4; $i++)
-                    @foreach ($partners as $partner)
-                        <div class="flex items-center mx-8">
-                            <span class="text-3xl md:text-4xl font-bold text-gray-300 mx-4 uppercase font-mono hover:text-brand-primary transition cursor-default">
-                                {{ $partner }}
-                            </span>
-                            <div class="w-2 h-2 bg-brand-primary/20 rounded-full ml-12"></div>
+        @php
+            // Menghitung jumlah partner yang diinput di CMS
+            $count = count($partners);            
+            $repeat = $count > 0 ? ceil(12 / $count) : 1;
+            // Pastikan minimal loop 2 kali untuk keperluan seamless animation
+            if ($repeat < 2) $repeat = 2; 
+        @endphp
+        
+        <div   div class="flex overflow-hidden group">
+            <div class="flex items-center w-max animate-marquee">
+                
+                <div class="flex items-center">
+                    @for ($i = 0; $i < $repeat; $i++)
+                        @foreach ($partners as $partner)
+                        <div class="flex items-center justify-center px-10">
+                            <div class="w-32 h-16 flex items-center justify-center">
+                                <img src="{{ asset('storage/' . $partner->logo_path) }}" 
+                                    alt="{{ $partner->name }}" 
+                                    class="max-h-12 w-auto object-contain filter grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+                            </div>
+                            <div class="w-1.5 h-1.5 bg-gray-200 rounded-full ml-10"></div>
                         </div>
-                    @endforeach
-                @endfor
-            </div>
-            <div class="animate-marquee2 whitespace-nowrap flex items-center">
-                @for ($i = 0; $i < 4; $i++)
-                    @foreach ($partners as $partner)
-                        <div class="flex items-center mx-8">
-                            <span class="text-3xl md:text-4xl font-bold text-gray-300 mx-4 uppercase font-mono hover:text-brand-primary transition cursor-default">
-                                {{ $partner }}
-                            </span>
-                            <div class="w-2 h-2 bg-brand-primary/20 rounded-full ml-12"></div>
+                        @endforeach
+                    @endfor
+                </div>
+
+                <div class="flex items-center">
+                    @for ($i = 0; $i < $repeat; $i++)
+                        @foreach ($partners as $partner)
+                        <div class="flex items-center justify-center px-10">
+                            <div class="w-32 h-16 flex items-center justify-center">
+                                <img src="{{ asset('storage/' . $partner->logo_path) }}" 
+                                    alt="{{ $partner->name }}" 
+                                    class="max-h-12 w-auto object-contain filter grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+                            </div>
+                            <div class="w-1.5 h-1.5 bg-gray-200 rounded-full ml-10"></div>
                         </div>
-                    @endforeach
-                @endfor
+                        @endforeach
+                    @endfor
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="tentang" class="py-20 bg-white">
+    <section id="tentang" class="py-12 bg-white">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="relative">
@@ -175,7 +188,7 @@
                     <img src="{{asset('images/about.png')}}" 
                          alt="About PT Fatih Jaya" 
                          class="relative z-10 rounded-2xl shadow-2xl">
-                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl z-20 hidden md:block border-l-4 border-brand-primary">
+                    <div class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white p-6 rounded-xl shadow-xl z-20 border-l-4 border-brand-primary">
                         <p class="text-4xl font-bold text-brand-primary">{{ $experience }}+</p>
                         <p class="text-gray-600 text-sm">Tahun Pengalaman</p>
                     </div>
@@ -310,13 +323,19 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @forelse($services as $service)
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 group">
-                    <div class="w-14 h-14 bg-blue-50 text-brand-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-white transition">
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+                    <a href="{{ route('service.show', $service->slug) }}" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 group block">
+                       <div class="w-14 h-14 bg-blue-50 text-brand-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-white transition">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">{{ $service->name }}</h3>
-                    <p class="text-gray-500 text-sm mb-4 leading-relaxed">{{ Str::limit($service->description, 100) }}</p>
-                    <p class="text-brand-primary font-bold">Mulai Rp {{ number_format($service->price, 0, ',', '.') }}</p>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-800">{{ $service->name }}</h3>
+                        <p class="text-gray-500 text-sm mb-4 leading-relaxed">{{ Str::limit($service->description, 100) }}</p>
+                        <p class="text-brand-primary font-bold">Mulai Rp {{ number_format($service->price, 0, ',', '.') }}</p> 
+
+                        <div class="mt-4 text-xs font-bold text-gray-300 uppercase tracking-widest group-hover:text-brand-primary transition">
+                            Lihat Detail &rarr;
+                        </div>
+                    </a>                    
                 </div>
                 @empty
                 <div class="col-span-3 text-center text-gray-400">Belum ada layanan yang diinput.</div>
@@ -329,11 +348,12 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12">
                 <div>
-                    <span class="text-brand-primary font-bold uppercase tracking-wider text-sm">Galeri Real</span>
+                    <span class="text-brand-primary font-bold uppercase tracking-wider text-sm">Galeri Pengerjaan</span>
                     <h2 class="text-3xl md:text-4xl font-bold mt-2 text-slate-800">Hasil Pengerjaan Terkini</h2>
                 </div>
-                <a href="#" class="hidden md:inline-flex items-center gap-2 text-brand-primary font-semibold hover:underline mt-4 md:mt-0">
-                    Lihat Semua Project <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <a href="{{ route('portfolio.index') }}" class="hidden md:inline-flex items-center gap-2 text-brand-primary font-semibold hover:underline mt-4 md:mt-0">
+                    Lihat Semua Project 
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </a>
             </div>
 
@@ -359,9 +379,9 @@
         </div>
     </section>
 
-    <footer id="kontak" class="bg-brand-dark text-white pt-20 pb-10">
+    <footer id="kontak" class="bg-brand-dark text-white pt-16 pb-6">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 
                 <div class="md:col-span-1">
                     <div class="flex items-center gap-2 mb-6">
