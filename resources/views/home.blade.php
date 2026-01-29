@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $settings['site_name'] ?? 'PT Fatih Jaya Film' }} - Spesialis Kaca Film</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -18,18 +19,23 @@
                     fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
                         brand: {
-                            dark: '#0f172a', // Slate 900
-                            primary: '#10b981', // Emerald 500
-                            accent: '#0ea5e9', // Sky 500
+                            dark: '#0a2540', // Slate 900
+                            primary: '#00aeef', // Emerald 500
+                            accent: '#f0f9ff', // Sky 500
                         }
                     },
                     animation: {
                         'marquee': 'marquee 40s linear infinite',
+                        'marquee2': 'marquee 40s linear infinite',
                     },
                     keyframes: {
                         marquee: {
                             '0%': { transform: 'translateX(0%)' },
                             '100%': { transform: 'translateX(-100%)' },
+                        },
+                        marquee2: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0%)' },
                         }
                     }
                 }
@@ -40,6 +46,15 @@
         /* Hide scrollbar for neatness */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        ::selection {
+            background-color: #00aeef;
+            color: white;
+        }
+        .text-brand-gradient {
+            background: linear-gradient(to right, #00aeef, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-slate-800 font-sans antialiased">
@@ -47,13 +62,23 @@
     <nav x-data="{ open: false, scrolled: false }" 
          @scroll.window="scrolled = (window.pageYOffset > 20)"
          :class="scrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'"
-         class="fixed w-full top-0 z-50 transition-all duration-300">
+         class="fixed w-full top-0 z-20 transition-all duration-300">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2">
+            {{-- <a href="#" class="flex items-center gap-2">
                 <div class="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">F</div>
                 <span :class="scrolled ? 'text-slate-800' : 'text-white'" class="font-bold text-xl tracking-wide">
                     Fatih<span class="text-brand-primary">Jaya</span>
                 </span>
+            </a> --}}
+
+            <a href="#" class="flex items-center gap-2">
+                <img src="{{asset('images/logo-brandname.png')}}" 
+                    alt="Logo Fatih Jaya Film" 
+                    class="h-14 w-auto object-contain">
+                
+                {{-- <span :class="scrolled ? 'text-slate-800' : 'text-white'" class="font-bold text-xl tracking-wide">
+                    Fatih<span class="text-brand-primary">Jaya</span>
+                </span> --}}
             </a>
 
             <div class="hidden md:flex space-x-8">
@@ -98,7 +123,7 @@
             </p>
             <div class="flex flex-col md:flex-row gap-4 justify-center">
                 <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '' }}?text=Halo%20Fatih%20Jaya,%20saya%20tertarik%20pasang%20kaca%20film" 
-                   class="bg-brand-primary hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full transition shadow-lg shadow-green-500/30 flex items-center justify-center gap-2">
+                   class="bg-brand-primary hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full transition shadow-lg shadow-sky-500/30 flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     Booking Jadwal Sekarang
                 </a>
@@ -113,13 +138,29 @@
         <div class="container mx-auto px-6 mb-4 text-center">
             <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest">Brand Kaca Film Yang Tersedia</p>
         </div>
+
         <div class="relative w-full flex overflow-x-hidden group">
-            <div class="animate-marquee whitespace-nowrap flex gap-16 items-center">
-                @for ($i = 0; $i < 2; $i++)
+            <div class="animate-marquee whitespace-nowrap flex items-center">
+                @for ($i = 0; $i < 4; $i++)
                     @foreach ($partners as $partner)
-                        <span class="text-3xl md:text-4xl font-bold text-gray-300 mx-4 uppercase font-mono hover:text-brand-primary transition cursor-default">
-                            {{ $partner }}
-                        </span>
+                        <div class="flex items-center mx-8">
+                            <span class="text-3xl md:text-4xl font-bold text-gray-300 mx-4 uppercase font-mono hover:text-brand-primary transition cursor-default">
+                                {{ $partner }}
+                            </span>
+                            <div class="w-2 h-2 bg-brand-primary/20 rounded-full ml-12"></div>
+                        </div>
+                    @endforeach
+                @endfor
+            </div>
+            <div class="animate-marquee2 whitespace-nowrap flex items-center">
+                @for ($i = 0; $i < 4; $i++)
+                    @foreach ($partners as $partner)
+                        <div class="flex items-center mx-8">
+                            <span class="text-3xl md:text-4xl font-bold text-gray-300 mx-4 uppercase font-mono hover:text-brand-primary transition cursor-default">
+                                {{ $partner }}
+                            </span>
+                            <div class="w-2 h-2 bg-brand-primary/20 rounded-full ml-12"></div>
+                        </div>
                     @endforeach
                 @endfor
             </div>
@@ -135,16 +176,16 @@
                          alt="About PT Fatih Jaya" 
                          class="relative z-10 rounded-2xl shadow-2xl">
                     <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl z-20 hidden md:block border-l-4 border-brand-primary">
-                        <p class="text-4xl font-bold text-brand-primary">5+</p>
+                        <p class="text-4xl font-bold text-brand-primary">{{ $experience }}+</p>
                         <p class="text-gray-600 text-sm">Tahun Pengalaman</p>
                     </div>
                 </div>
                 <div>
                     <h2 class="text-3xl md:text-4xl font-bold mb-6 text-slate-800">Kami Mengutamakan <br> <span class="text-brand-primary">Kerapian & Kualitas</span></h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
+                    <p class="text-gray-600 mb-4 leading-relaxed">
                         PT Fatih Jaya Film hadir sebagai solusi bagi Anda yang menginginkan kenyamanan berkendara dan privasi di dalam gedung. Kami bukan sekadar tukang pasang kaca film, kami adalah teknisi bersertifikat yang mengerti karakteristik setiap jenis kaca film.
                     </p>
-                    <ul class="space-y-4 mb-8">
+                    {{-- <ul class="space-y-4 mb-8">
                         <li class="flex items-center gap-3">
                             <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <span class="text-gray-700">Jaminan Keaslian Produk 100%</span>
@@ -157,15 +198,112 @@
                             <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <span class="text-gray-700">Pengerjaan Bebas Debu (Dust-Free Tech)</span>
                         </li>
-                    </ul>
+                    </ul> --}}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-8">
+                        <div class="flex items-center gap-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-sky-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Garansi Resmi Brand</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-500">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Teknisi Bersertifikat</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-purple-500">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Home Service Berpengalaman</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-sky-500">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Konsultasi Gratis</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-sky-500">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Pengerjaan Bebas Debu<br>(Dust-Free Tech)</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="layanan" class="py-20 bg-gray-50">
+    {{-- <section id="tentang" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gray-50 rounded-full -mr-32 -mt-32 z-0"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-50/50 rounded-full -ml-48 -mb-48 z-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="{{asset('images/about.png')}}" 
+                            alt="Teknisi Profesional" 
+                            class="w-full h-auto object-cover transform hover:scale-105 transition duration-700">
+                        <div class="absolute bottom-0 left-0 bg-brand-dark text-white p-6 rounded-tr-2xl">
+                            <span class="block text-4xl font-bold text-brand-primary">5+</span>
+                            <span class="text-sm font-light tracking-wide">Tahun<br>Pengalaman</span>
+                        </div>
+                    </div>
+                    <div class="absolute -z-10 top-6 -right-6 w-full h-full border-2 border-brand-primary/30 rounded-2xl"></div>
+                </div>
+
+                <div class="w-full lg:w-1/2">
+                    <span class="text-brand-primary font-bold uppercase tracking-widest text-sm mb-2 block">Tentang Fatih Jaya Film</span>
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-slate-900 leading-tight">
+                        Bukan Sekadar <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Pemasangan Biasa.</span>
+                    </h2>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                        Kami memahami bahwa mobil dan gedung Anda adalah aset berharga. Oleh karena itu, PT Fatih Jaya Film menerapkan standar instalasi <span class="font-semibold text-slate-800">"Zero Dust Tolerance"</span> untuk memastikan hasil yang jernih, rapi, dan tahan lama.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Garansi Resmi Brand</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Teknisi Bersertifikat</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Home Service Gratis</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700 text-sm">Konsultasi Gratis</span>
+                        </div>
+                    </div>
+
+                    <a href="#portfolio" class="inline-flex items-center gap-2 text-brand-primary font-bold hover:text-brand-dark transition group">
+                        Lihat Bukti Kerja Kami 
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+
+    <section id="layanan" class="py-10 bg-gray-50">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-14">
                 <span class="text-brand-primary font-bold uppercase tracking-wider text-sm">Layanan Kami</span>
                 <h2 class="text-3xl md:text-4xl font-bold mt-2 text-slate-800">Solusi Kaca Film Terlengkap</h2>
             </div>
@@ -187,7 +325,7 @@
         </div>
     </section>
 
-    <section id="portfolio" class="py-20 bg-white">
+    <section id="portfolio" class="py-10 bg-white">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12">
                 <div>
@@ -227,8 +365,8 @@
                 
                 <div class="md:col-span-1">
                     <div class="flex items-center gap-2 mb-6">
-                        <div class="w-8 h-8 bg-brand-primary rounded flex items-center justify-center font-bold text-brand-dark">F</div>
-                        <span class="font-bold text-xl">Fatih<span class="text-brand-primary">Jaya</span></span>
+                        {{-- <div class="w-8 h-8 bg-brand-primary rounded flex items-center justify-center font-bold text-brand-dark">F</div> --}}
+                        <span class="font-bold text-xl">PT Fatih Jaya<span class="text-brand-primary"> Film</span></span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Solusi profesional untuk kebutuhan kaca film kendaraan dan properti Anda. Melayani area Jabodetabek dengan sistem Home Service.

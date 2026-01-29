@@ -19,10 +19,12 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
+        $experience = date('Y') - 2021;
+
         $partners = [
             '3M Auto Film', 'Solar Gard', 'V-Kool', 'LLumar', 'Iceberg', 'Wincos'
         ];
 
-        return view('home', compact('services', 'portfolios', 'settings', 'partners'));
+        return view('home', compact('services', 'portfolios', 'settings', 'partners', 'experience'));
     }
 }
