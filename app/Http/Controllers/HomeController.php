@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partner;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\Service;
@@ -21,10 +22,34 @@ class HomeController extends Controller
 
         $experience = date('Y') - 2021;
 
-        $partners = [
-            '3M Auto Film', 'Solar Gard', 'V-Kool', 'LLumar', 'Iceberg', 'Wincos'
-        ];
+        $partners = Partner::where('is_active', true)->get();
 
         return view('home', compact('services', 'portfolios', 'settings', 'partners', 'experience'));
+    }
+
+    public function showService($slug)
+    {
+        $service = Service::where('slug', $slug)->firstOrFail();
+        $settings = Setting::pluck('value', 'key')->toArray();
+
+        $relatedPortfolios = Portfolio::where('service_id', $service->id)
+            ->where('is_active', true)
+            ->latest()
+            ->take(6)
+            ->get();
+
+        return view('service.services-detail', compact('service', 'settings', 'relatedPortfolios'));
+    }
+
+    public function allPortfolios()
+    {
+        $portfolios = Portfolio::with('service')
+            ->where('is_active', true)
+            ->latest()
+            ->paginate(12);
+
+        $settings = Setting::pluck('value', 'key')->toArray();
+
+        return view('portfolio.all-portfolios', compact('portfolios', 'settings'));
     }
 }
