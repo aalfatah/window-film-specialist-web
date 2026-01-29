@@ -36,10 +36,12 @@ class ServiceResource extends Resource
                 ->label('Nama Layanan')
                 ->live(onBlur: true)
                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+
             TextInput::make('slug')
                 ->disabled()
                 ->dehydrated()
-                ->required(),
+                ->required()
+                ->unique(ignoreRecord: true),
 
             TextInput::make('price')
                 ->numeric()
