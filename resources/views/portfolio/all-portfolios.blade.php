@@ -1,45 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Project - {{ $settings['site_name'] ?? 'PT Fatih Jaya Film' }}</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: {
-                        brand: {
-                            primary: '#10b981',
-                            dark: '#0f172a'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-50 text-slate-800 font-sans antialiased">
+@extends('layouts.app')
+@section('title', 'Galeri Pekerjaan')
 
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="{{ route('home') }}" class="group flex items-center gap-2 text-slate-600 hover:text-brand-primary transition duration-300">
-                <div class="p-2 rounded-full group-hover:bg-brand-primary/10 transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </div>
-                <span class="font-medium">Beranda</span>
-            </a>
-            <img src="{{ asset('images/logo.png') }}" 
-                    alt="Fatih Jaya Film" 
-                    class="h-10 w-auto">
-        </div>
-    </nav>
-
+@section('content')
     <section class="bg-brand-dark text-white py-16 border-b-4 border-brand-primary">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">Galeri Pekerjaan</h1>
@@ -52,36 +14,37 @@
     <main class="container mx-auto px-6 py-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             @forelse($portfolios as $portfolio)
-            <div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-500 border border-gray-100">
-                <div class="relative h-72 overflow-hidden">
-                    <img src="{{ asset('storage/' . $portfolio->image_path) }}" 
-                         alt="{{ $portfolio->title }}" 
-                         class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    
-                    <div class="absolute top-4 left-4">
-                        <span class="bg-white/90 backdrop-blur text-brand-dark text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
-                            {{ $portfolio->service->name ?? 'General' }}
-                        </span>
+                <a href="{{ route('portfolio.show', $portfolio->slug) }}" class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-500 border border-gray-100 flex flex-col">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="{{ asset('storage/' . $portfolio->image_path) }}" 
+                            alt="{{ $portfolio->title }}"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110" loading="lazy">
+                        
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur text-brand-dark text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
+                                {{ $portfolio->service->name ?? 'General' }}
+                            </span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="p-8">
-                    <h3 class="font-extrabold text-xl text-brand-dark mb-3 group-hover:text-brand-primary transition duration-300">
-                        {{ $portfolio->title }}
-                    </h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 italic">
-                        "{{ $portfolio->description }}"
-                    </p>
-                    <div class="pt-4 border-t border-gray-50 flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                    <div class="p-8 flex-grow">
+                        <h3 class="font-extrabold text-xl text-brand-dark mb-3 group-hover:text-brand-primary transition duration-300 leading-tight">
+                            {{ $portfolio->title }}
+                        </h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                            {{ Str::limit(strip_tags($portfolio->description), 100) }}
+                        </p>
+                    </div>
+                    
+                    <div class="px-8 pb-8 flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest border-t border-gray-50 pt-4">
                         <span>Fatih Jaya Film</span>
                         <span>{{ $portfolio->created_at->format('M Y') }}</span>
                     </div>
-                </div>
-            </div>
+                </a>
             @empty
-            <div class="col-span-full py-20 text-center">
-                <p class="text-gray-400 italic">Belum ada foto pekerjaan yang diunggah.</p>
-            </div>
+                <div class="col-span-full py-20 text-center">
+                    <p class="text-gray-400 italic">Belum ada foto pekerjaan yang diunggah.</p>
+                </div>
             @endforelse
         </div>
 
@@ -100,6 +63,4 @@
             </a>
         </div>
     </section>
-
-</body>
-</html>
+@endsection

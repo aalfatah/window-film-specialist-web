@@ -52,4 +52,22 @@ class HomeController extends Controller
 
         return view('portfolio.all-portfolios', compact('portfolios', 'settings'));
     }
+
+    public function showPortfolio($slug)
+    {
+        $settings = Setting::pluck('value', 'key')->toArray();
+
+        $portfolio = Portfolio::with('service')
+            ->where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $otherPortfolios = Portfolio::where('id', '!=', $portfolio->id)
+            ->where('is_active', true)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        return view('portfolio.portfolio-detail', compact('portfolio', 'otherPortfolios', 'settings'));
+    }
 }

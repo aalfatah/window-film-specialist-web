@@ -1,46 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $service->name }} - {{ $settings['site_name'] ?? 'PT Fatih Jaya Film' }}</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: {
-                        brand: {
-                            primary: '#10b981',
-                            dark: '#0f172a',
-                            accent: '#334155'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-50 text-slate-800 font-sans antialiased">
+@extends('layouts.app')
+@section('title', $service->name . ' - Detail Layanan')
 
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="{{ route('home') }}" class="group flex items-center gap-2 text-slate-600 hover:text-brand-primary transition duration-300">
-                <div class="p-2 rounded-full group-hover:bg-brand-primary/10 transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </div>
-                <span class="font-medium">Beranda</span>
-            </a>
-            <img src="{{ asset('images/logo.png') }}" 
-                    alt="Fatih Jaya Film" 
-                    class="h-10 w-auto">
-        </div>
-    </nav>
-
+@section('content')
     <header class="bg-brand-dark text-white py-16 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-1/3 h-full bg-brand-primary/10 skew-x-12 translate-x-20"></div>
         <div class="container mx-auto px-6 relative z-10">
@@ -81,7 +42,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         @foreach($relatedPortfolios as $portfolio)
                         <div class="group relative rounded-xl overflow-hidden shadow-lg h-60">
-                            <img src="{{ asset('storage/' . $portfolio->image_path) }}" 
+                            <img src="{{ asset('storage/' . $portfolio->image_path) }}" loading="lazy" 
                                  alt="{{ $portfolio->title }}" 
                                  class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark opacity-70"></div>
@@ -133,9 +94,4 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t border-gray-100 py-12 text-center text-slate-500 text-sm italic">
-        <p>&copy; {{ date('Y') }} {{ $settings['site_name'] ?? 'PT Fatih Jaya Film' }}. All Rights Reserved.</p>
-    </footer>
-
-</body>
-</html>
+@endsection

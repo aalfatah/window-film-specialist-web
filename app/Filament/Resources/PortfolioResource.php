@@ -23,6 +23,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Str;
+use Filament\Forms\Set;
+use Filament\Forms\Components\RichEditor;
 
 class PortfolioResource extends Resource
 {
@@ -39,7 +42,15 @@ class PortfolioResource extends Resource
                 TextInput::make('title')
                     ->required()
                     ->maxlength(255)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->label('Judul Project'),
+
+                TextInput::make('slug')
+                    ->required()
+                    ->readonly()
+                    ->unique(ignoreRecord: true)
+                    ->helperText('Terisi otomatis berdasarkan judul project.'),
 
                 Select::make('service_id')
                     ->relationship('service', 'name')
@@ -60,8 +71,19 @@ class PortfolioResource extends Resource
                     ->columnSpanFull()
                     ->label('Gambar Hasil Pengerjaan'),
 
-                Textarea::make('description')
+                RichEditor::make('description')
                     ->columnSpanFull()
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strike',
+                        'bulletList',
+                        'numberList',
+                        'link',
+                        'redo',
+                        'undo',
+                    ])
                     ->label('Catatan Pengerjaan'),
 
                 Toggle::make('is_active')
@@ -76,6 +98,10 @@ class PortfolioResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image_path')
                     ->square()
+                    ->size(40)
+                    ->disk('public')
+                    ->visibility('public')
+                    ->extraImgAttributes(['loading' => 'lazy', 'class'  => 'object-cover shadow-sm'])
                     ->label('Foto'),
 
                 Tables\Columns\TextColumn::make('title')
