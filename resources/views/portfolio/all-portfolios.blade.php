@@ -57,7 +57,7 @@
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-black text-brand-dark mb-4">INGIN HASIL SEPERTI INI?</h2>
             <p class="text-gray-500 mb-10">Konsultasikan kebutuhan kaca film Anda secara gratis dengan tim ahli kami.</p>
-            <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '' }}" 
+            <a href="{{ route('whatsapp.redirect') }}" 
                class="inline-flex items-center gap-4 bg-brand-primary text-brand-dark font-black px-10 py-5 rounded-2xl hover:bg-brand-dark hover:text-white transition duration-500 shadow-xl shadow-green-100 uppercase tracking-widest text-sm">
                 Hubungi via WhatsApp
             </a>

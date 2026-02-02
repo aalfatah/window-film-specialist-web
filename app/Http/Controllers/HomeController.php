@@ -70,4 +70,11 @@ class HomeController extends Controller
 
         return view('portfolio.portfolio-detail', compact('portfolio', 'otherPortfolios', 'settings'));
     }
+
+    public function redirect() {
+        $settings = Setting::pluck('value', 'key');
+        $phoneNumber = $settings['whatsapp_number'] ?? '628123456789';
+        
+        return redirect()->to('https://wa.me/' . $phoneNumber);
+    }
 }

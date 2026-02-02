@@ -19,3 +19,7 @@ Route::get('lang/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('lang.switch');
+
+Route::get('/contact', [HomeController::class, 'redirect'])
+    ->name('whatsapp.redirect')
+    ->middleware('throttle:5,1');

@@ -47,7 +47,7 @@
                         <h4 class="text-2xl font-bold text-slate-900 mb-2">Tertarik dengan hasil pengerjaan ini?</h4>
                         <p class="text-slate-600">Dapatkan konsultasi gratis dan estimasi biaya untuk kendaraan atau gedung Anda sekarang.</p>
                     </div>
-                    <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '' }}?text={{ urlencode('Halo Fatih Jaya, saya tertarik dengan project ' . $portfolio->title . '. Bisa info estimasi harganya?') }}" 
+                    <a href="{{ route('whatsapp.redirect') }}?text={{ urlencode('Halo Fatih Jaya, saya tertarik dengan project ' . $portfolio->title . '. Bisa info estimasi harganya?') }}" 
                     class="whitespace-nowrap bg-brand-primary text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-brand-primary/30 transition-all flex items-center gap-2">
                         Konsultasi Sekarang
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -100,7 +100,7 @@
                     </div>
 
                     <div class="mt-8">
-                        <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '' }}?text=Halo,%20saya%20melihat%20project%20{{ urlencode($portfolio->title) }}" 
+                        <a href="{{ route('whatsapp.redirect') }}?text={{ urlencode('Halo Fatih Jaya, saya tertarik konsultasi mengenai project ' . $portfolio->title) }}" 
                            class="group flex items-center justify-center gap-3 w-full bg-brand-dark text-white py-5 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200">
                             <span>Tanya Project Ini</span>
                             <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
