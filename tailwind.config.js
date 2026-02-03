@@ -11,9 +11,23 @@ export default {
     ],
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+            colors: {
+                brand: {
+                    dark: '#0a2540', // Slate 900
+                    primary: '#00aeef', // Emerald 500
+                    accent: '#f0f9ff', // Sky 500
+                }
             },
+            animation: {
+                'marquee': 'marquee 30s linear infinite',
+            },
+            keyframes: {
+                marquee: {
+                    '0%': { transform: 'translateX(0%)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                }
+            }
         },
     },
     plugins: [],

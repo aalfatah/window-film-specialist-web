@@ -6,10 +6,11 @@
     <title>@yield('title', $settings['site_name'] ?? 'Fatih Jaya Film')</title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo.webp') }}">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
-    <script>
+    {{-- <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -33,7 +34,7 @@
                 }
             }
         }
-    </script>
+    </script> --}}
     
     @stack('styles')
 </head>
@@ -66,7 +67,7 @@
                     </div>
                 </div> --}}
                 <a href="#layanan" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.services') }}</a>
-                <a href="#portfolio" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.portfolio') }}</a>
+                <a href="{{ route('portfolio.index') }}" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.portfolio') }}</a>
                 <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
                     <a href="{{ route('lang.switch', 'id') }}" 
                        class="px-3 py-1 text-[10px] font-bold rounded-full transition {{ app()->getLocale() == 'id' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400 hover:text-slate-600' }}">
