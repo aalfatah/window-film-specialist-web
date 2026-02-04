@@ -27,6 +27,8 @@ return [
     'service_price_from' => 'Mulai dari',
     'portfolio_title' => 'Galeri Pengerjaan',
     'portfolio_subtitle' => 'Bukti Kualitas Kami',
+    'testimonials_title' => 'Feedback Pelanggan',
+    'testimonials_subtitle' => 'Apa Kata Klien Kami ?',
     'view_all_portfolio' => 'Lihat Semua Project',
     'offer_title' => 'Siap Memberikan Perlindungan Terbaik ?',
     'offer_subtitle' => 'Jangan Biarkan Sinar UV Merusak Kenyamanan Anda. Konsultasikan Kebutuhan Kaca Film Anda Sekarang!',

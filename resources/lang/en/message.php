@@ -27,6 +27,8 @@ return [
     'service_price_from' => 'Starting from',
     'portfolio_title' => 'Work Gallery',
     'portfolio_subtitle' => 'Proof of Our Quality',
+    'testimonials_title' => 'Customer Feedback',
+    'testimonials_subtitle' => 'What Our Clients Say?',
     'view_all_portfolio' => 'View All Projects',
     'offer_title' => 'Ready to Provide the Best Protection?',
     'offer_subtitle' => "Don't let UV rays damage your comfort. Consult your window film needs now!",
