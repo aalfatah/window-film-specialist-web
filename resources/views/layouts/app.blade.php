@@ -9,34 +9,9 @@
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}">
     
-    {{-- <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: {
-                        brand: {
-                            dark: '#0a2540', // Slate 900
-                            primary: '#00aeef', // Emerald 500
-                            accent: '#f0f9ff', // Sky 500
-                        }
-                    },
-                    animation: {
-                        'marquee': 'marquee 30s linear infinite',
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-50%)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script> --}}
-    
-    @stack('styles')
+    {{-- @stack('styles') --}}
 </head>
 <body class="bg-gray-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 

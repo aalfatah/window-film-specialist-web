@@ -319,20 +319,3 @@
         </div>
     </section>
 @endsection
-@push('styles')
-    <style>
-        [x-cloak] { display: none !important; }
-        /* Hide scrollbar for neatness */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        ::selection {
-            background-color: #00aeef;
-            color: white;
-        }
-        .text-brand-gradient {
-            background: linear-gradient(to right, #00aeef, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
-@endpush

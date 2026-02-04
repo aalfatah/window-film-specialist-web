@@ -18,6 +18,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\RichEditor;
 
 class ServiceResource extends Resource
 {
@@ -48,8 +49,19 @@ class ServiceResource extends Resource
                 ->prefix('Rp')
                 ->label('Harga Mulai'),
                 
-            Textarea::make('description')
+            RichEditor::make('description')
                 ->columnSpanFull()
+                ->toolbarButtons([
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strike',
+                    'bulletList',
+                    'orderedList',
+                    'link',
+                    'redo',
+                    'undo',
+                ])
                 ->label('Deskripsi'),
 
             Toggle::make('is_featured')

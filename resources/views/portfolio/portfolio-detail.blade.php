@@ -141,59 +141,5 @@
     </div>
 </div>
 
-@push('styles')
-<style>
-    /* Styling khusus untuk konten dari WYSIWYG/TinyMCE */
-    .rich-content {
-        color: #475569; /* slate-600 */
-        line-height: 1.8;
-        font-size: 1.1rem;
-    }
-    .rich-content h2 { 
-        font-size: 1.75rem; font-weight: 800; margin-top: 3rem; margin-bottom: 1.25rem; color: #0f172a; 
-        letter-spacing: -0.025em;
-    }
-    .rich-content h3 { 
-        font-size: 1.4rem; font-weight: 700; margin-top: 2rem; color: #1e293b; 
-    }
-    .rich-content p { margin-bottom: 1.5rem; }
-    .rich-content ul { list-style-type: none; margin-bottom: 1.5rem; padding-left: 0.5rem; }
-    .rich-content ul li { position: relative; padding-left: 1.75rem; margin-bottom: 0.75rem; }
-    .rich-content ul li::before {
-        content: ""; position: absolute; left: 0; top: 0.6rem;
-        width: 0.5rem; h-0.5rem; background: #00aeef; border-radius: 99px;
-    }
-    .rich-content strong { color: #0f172a; font-weight: 700; }
 
-    /* Styling untuk Blockquote / Kutipan */
-    .rich-content blockquote {
-        position: relative;
-        margin: 2.5rem 0;
-        padding: 2rem 2.5rem;
-        background: #f8fafc; /* slate-50 */
-        border-left: 4px solid #00aeef; /* Warna Brand */
-        border-radius: 0 1.5rem 1.5rem 0;
-        font-style: italic;
-        color: #1e293b;
-    }
-
-    .rich-content blockquote::before {
-        content: '"';
-        position: absolute;
-        top: -10px;
-        left: 10px;
-        font-size: 5rem;
-        color: #00aeef;
-        opacity: 0.15;
-        font-family: serif;
-    }
-
-    .rich-content blockquote p {
-        margin-bottom: 0 !important;
-        font-size: 1.25rem;
-        line-height: 1.6;
-        font-weight: 500;
-    }
-</style>
-@endpush
 @endsection
