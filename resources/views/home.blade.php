@@ -151,6 +151,39 @@
         </div>
     </section>
 
+    <section class="py-12 bg-blue-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-semibold mb-10">Kenapa Memilih Kaca Film Berkualitas?</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                
+                <div class="p-6 border border-blue-700 rounded-lg">
+                    <div class="text-4xl font-bold text-yellow-400 mb-2">99%</div>
+                    <div class="text-sm uppercase tracking-wider">UV Protection</div>
+                    <p class="text-xs text-gray-300 mt-2">Melindungi interior & kulit dari bahaya matahari.</p>
+                </div>
+
+                <div class="p-6 border border-blue-700 rounded-lg">
+                    <div class="text-4xl font-bold text-yellow-400 mb-2">79%</div>
+                    <div class="text-sm uppercase tracking-wider">Heat Rejection</div>
+                    <p class="text-xs text-gray-300 mt-2">Kabin lebih dingin, hemat AC & BBM.</p>
+                </div>
+
+                <div class="p-6 border border-blue-700 rounded-lg">
+                    <div class="text-4xl font-bold text-yellow-400 mb-2">5 Thn</div>
+                    <div class="text-sm uppercase tracking-wider">Garansi Resmi</div>
+                    <p class="text-xs text-gray-300 mt-2">Jaminan produk original & anti gelembung.</p>
+                </div>
+
+                <div class="p-6 border border-blue-700 rounded-lg">
+                    <div class="text-4xl font-bold text-yellow-400 mb-2">80%</div>
+                    <div class="text-sm uppercase tracking-wider">Glare Reduction</div>
+                    <p class="text-xs text-gray-300 mt-2">Mengurangi silau lampu kendaraan dari arah berlawanan untuk keamanan berkendara di malam hari.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     {{-- <section id="tentang" class="py-24 bg-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-64 h-64 bg-gray-50 rounded-full -mr-32 -mt-32 z-0"></div>
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-50/50 rounded-full -ml-48 -mb-48 z-0"></div>
