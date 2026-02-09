@@ -151,33 +151,44 @@
         </div>
     </section>
 
-    <section class="py-12 bg-blue-900 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-2xl font-semibold mb-10">Kenapa Memilih Kaca Film Berkualitas?</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section id="advantage" class="py-20 bg-brand-dark relative overflow-hidden">
+        <div class="absolute top-10 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse"></div>
+        <div class="absolute bottom-10 right-10 w-40 h-40 bg-brand-primary/10 rounded-full blur-2xl animate-bounce" style="animation-duration: 5s"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ __('message.advantage_title') }}</h2>
+                <div class="w-24 h-1 bg-brand-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 
-                <div class="p-6 border border-blue-700 rounded-lg">
-                    <div class="text-4xl font-bold text-yellow-400 mb-2">99%</div>
-                    <div class="text-sm uppercase tracking-wider">UV Protection</div>
-                    <p class="text-xs text-gray-300 mt-2">Melindungi interior & kulit dari bahaya matahari.</p>
+                <div class="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-brand-primary/10 hover:border-brand-primary/50 transition-all duration-500 animate-float" style="animation-delay: 0s">
+                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                    <div class="text-4xl md:text-5xl font-extrabold text-yellow-400 mb-4 tracking-tighter">98%</div>
+                    <h3 class="text-sm md:text-base font-bold uppercase tracking-widest text-white mb-2">UV Protection</h3>
+                    <p class="text-xs md:text-sm text-gray-400 group-hover:text-gray-200 transition">{{ __('message.advantage_grid1') }}</p>
                 </div>
 
-                <div class="p-6 border border-blue-700 rounded-lg">
-                    <div class="text-4xl font-bold text-yellow-400 mb-2">79%</div>
-                    <div class="text-sm uppercase tracking-wider">Heat Rejection</div>
-                    <p class="text-xs text-gray-300 mt-2">Kabin lebih dingin, hemat AC & BBM.</p>
+                <div class="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-brand-primary/10 hover:border-brand-primary/50 transition-all duration-500 animate-float" style="animation-delay: 0.5s">
+                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-brand-primary/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                    <div class="text-4xl md:text-5xl font-extrabold text-brand-primary mb-4 tracking-tighter">79%</div>
+                    <h3 class="text-sm md:text-base font-bold uppercase tracking-widest text-white mb-2">Heat Rejection</h3>
+                    <p class="text-xs md:text-sm text-gray-400 group-hover:text-gray-200 transition">{{ __('message.advantage_grid2') }}</p>
                 </div>
 
-                <div class="p-6 border border-blue-700 rounded-lg">
-                    <div class="text-4xl font-bold text-yellow-400 mb-2">5 Thn</div>
-                    <div class="text-sm uppercase tracking-wider">Garansi Resmi</div>
-                    <p class="text-xs text-gray-300 mt-2">Jaminan produk original & anti gelembung.</p>
+                <div class="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-brand-primary/10 hover:border-brand-primary/50 transition-all duration-500 animate-float" style="animation-delay: 0.2s">
+                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-green-400/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                    <div class="text-4xl md:text-5xl font-extrabold text-green-400 mb-4 tracking-tighter">5 Thn</div>
+                    <h3 class="text-sm md:text-base font-bold uppercase tracking-widest text-white mb-2">Garansi Resmi</h3>
+                    <p class="text-xs md:text-sm text-gray-400 group-hover:text-gray-200 transition">{{ __('message.advantage_grid3') }}</p>
                 </div>
 
-                <div class="p-6 border border-blue-700 rounded-lg">
-                    <div class="text-4xl font-bold text-yellow-400 mb-2">80%</div>
-                    <div class="text-sm uppercase tracking-wider">Glare Reduction</div>
-                    <p class="text-xs text-gray-300 mt-2">Mengurangi silau lampu kendaraan dari arah berlawanan untuk keamanan berkendara di malam hari.</p>
+                <div class="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-brand-primary/10 hover:border-brand-primary/50 transition-all duration-500 animate-float" style="animation-delay: 0.7s">
+                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-purple-400/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                    <div class="text-4xl md:text-5xl font-extrabold text-purple-400 mb-4 tracking-tighter">80%</div>
+                    <h3 class="text-sm md:text-base font-bold uppercase tracking-widest text-white mb-2">Glare Reduction</h3>
+                    <p class="text-xs md:text-sm text-gray-400 group-hover:text-gray-200 transition">{{ __('message.advantage_grid4') }}</p>
                 </div>
 
             </div>
