@@ -27,7 +27,7 @@
 
             <div class="hidden md:flex items-center gap-8">
                 <a href="#tentang" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.about') }}</a>
-                {{-- <div class="relative" @mouseenter="serviceMenuOpen = true" @mouseleave="serviceMenuOpen = false">
+                <div class="relative" @mouseenter="serviceMenuOpen = true" @mouseleave="serviceMenuOpen = false">
                     <button class="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-primary transition tracking-wider">
                         Layanan 
                         <svg class="w-4 h-4 transition-transform" :class="serviceMenuOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -39,8 +39,34 @@
                             </a>
                         @endforeach
                     </div>
-                </div> --}}
-                <a href="#layanan" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.services') }}</a>
+                </div>
+                <div class="relative group" x-data="{ brandOpen: false }" @mouseenter="brandOpen = true" @mouseleave="brandOpen = false">
+                    <button class="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-primary transition tracking-wider py-2">
+                        Brands
+                        <svg class="w-4 h-4 transition-transform duration-300" :class="brandOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    
+                    <div x-show="brandOpen" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-2"
+                        class="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-3 overflow-hidden z-50">
+                        
+                        @foreach(\App\Models\Partner::all() as $navPartner)
+                            <a href="{{ route('brand.detail', ['id' => $navPartner->id, 'slug' => Str::slug($navPartner->name)]) }}" 
+                            class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-green-50 hover:text-brand-primary transition border-b border-gray-50 last:border-0">
+                                @if($navPartner->logo_path)
+                                    <img src="{{ asset('storage/' . $navPartner->logo_path) }}" class="w-8 h-8 object-contain" alt="Logo">
+                                @endif
+                                <span class="font-medium">{{ $navPartner->name }}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+                {{-- <a href="#layanan" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.services') }}</a> --}}
                 <a href="{{ route('portfolio.index') }}" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.portfolio') }}</a>
                 <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
                     <a href="{{ route('lang.switch', 'id') }}" 
@@ -137,10 +163,7 @@
                 </div>
 
                 <div class="h-48 rounded-xl overflow-hidden bg-gray-800">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.086603708!2d106.787498!3d-6.284221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1ec2422b423%3A0xbc0c44d6219448ee!2sJakarta%2C%20Special%20Capital%20Region%20of%20Jakarta!5e0!3m2!1sen!2sid!4v1650000000000!5m2!1sen!2sid" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d63455.019040037456!2d106.72131228382455!3d-6.2717930213563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sKp.%20Pondok%20Jati%20Selatan%20No.138%20RT.%2003%20RW%2013!5e0!3m2!1sid!2sid!4v1770889556430!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 

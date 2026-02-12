@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PartnerController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -19,6 +20,8 @@ Route::get('lang/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('lang.switch');
+
+Route::get('/brand/{id}/{slug?}', [PartnerController::class, 'show'])->name('brand.detail');
 
 Route::get('/contact', [HomeController::class, 'redirect'])
     ->name('whatsapp.redirect')
