@@ -26,3 +26,5 @@ Route::get('/brand/{id}/{slug?}', [PartnerController::class, 'show'])->name('bra
 Route::get('/contact', [HomeController::class, 'redirect'])
     ->name('whatsapp.redirect')
     ->middleware('throttle:5,1');
+
+Route::get('/about-me', [HomeController::class, 'about'])->name('about.me');

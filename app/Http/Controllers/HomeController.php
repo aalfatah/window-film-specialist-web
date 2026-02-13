@@ -27,6 +27,14 @@ class HomeController extends Controller
         return view('home', compact('services', 'portfolios', 'settings', 'partners', 'experience'));
     }
 
+    public function about()
+    {
+        $experience = date('Y') - 2021;
+        $partners = Partner::where('is_active', true)->get();
+
+        return view('about.aboutme', compact('experience', 'partners'));
+    }
+
     public function showService($slug)
     {
         $service = Service::where('slug', $slug)->firstOrFail();

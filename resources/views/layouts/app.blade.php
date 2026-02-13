@@ -26,10 +26,10 @@
             </a>
 
             <div class="hidden md:flex items-center gap-8">
-                <a href="#tentang" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.about') }}</a>
+                <a href="{{route('about.me')}}" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.about') }}</a>
                 <div class="relative" @mouseenter="serviceMenuOpen = true" @mouseleave="serviceMenuOpen = false">
                     <button class="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-primary transition tracking-wider">
-                        Layanan 
+                        {{ __('message.services') }}
                         <svg class="w-4 h-4 transition-transform" :class="serviceMenuOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div x-show="serviceMenuOpen" x-transition class="absolute left-0 mt-0 w-56 bg-white shadow-2xl rounded-2xl border border-gray-100 py-3 overflow-hidden">
