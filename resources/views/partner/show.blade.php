@@ -145,29 +145,18 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @php
-                            $glossary = [
-                                ['label' => 'VLT', 'title' => 'Visible Light Transmission', 'desc' => 'Tingkat kegelapan. Semakin rendah angkanya, semakin gelap tampilan kacanya.', 'icon' => 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'],
-                                ['label' => 'TSER', 'title' => 'Total Solar Energy Rejected', 'desc' => 'Indikator paling akurat untuk tolak panas. Semakin tinggi, kabin semakin adem.', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
-                                ['label' => 'IRR', 'title' => 'Infrared Rejection', 'desc' => 'Menolak radiasi infra merah yang menyebabkan rasa menyengat di kulit.', 'icon' => 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'],
-                                ['label' => 'UVR', 'title' => 'Ultra Violet Rejection', 'desc' => 'Menghalau 99% sinar UV agar interior tidak cepat pudar dan menjaga kesehatan kulit.', 'icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
-                                ['label' => 'VLR', 'title' => 'Visible Light Reflectance', 'desc' => 'Tingkat pantulan seperti cermin. Angka rendah berarti pandangan keluar lebih jernih.', 'icon' => 'M15 12a3 3 0 11-6 0 3 3 0 016 0z'],
-                                ['label' => 'GLARE', 'title' => 'Glare Reduction', 'desc' => 'Mengurangi silau lampu kendaraan dari lawan arah atau sinar matahari yang tajam.', 'icon' => 'M15 12a3 3 0 11-6 0 3 3 0 016 0z']
-                            ];
-                        @endphp
-
-                        @foreach($glossary as $item)
-                        <div class="group p-6 rounded-2xl bg-white border border-gray-100 hover:border-brand-primary hover:shadow-xl transition-all duration-500">
-                            <div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-colors mb-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $item['icon'] }}"></path>
-                                </svg>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">                       
+                        @foreach(config('glossary') as $item)
+                            <div class="group p-6 rounded-2xl bg-white border border-gray-100 hover:border-brand-primary hover:shadow-xl transition-all duration-500">
+                                <div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-colors mb-4">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $item['icon'] }}"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-800">{{ $item['label'] }}</h4>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">{{ $item['title'] }}</span>
+                                <p class="text-sm text-gray-500 leading-relaxed">{{ __($item['desc']) }}</p>
                             </div>
-                            <h4 class="text-xl font-bold text-slate-800">{{ $item['label'] }}</h4>
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">{{ $item['title'] }}</span>
-                            <p class="text-sm text-gray-500 leading-relaxed">{{ $item['desc'] }}</p>
-                        </div>
                         @endforeach
                     </div>
                 </div>
