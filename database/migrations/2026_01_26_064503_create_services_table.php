@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('subtitle')->nullable();
+            $table->string('image')->nullable();
             $table->text('description');
+            $table->string('service_type')->default('Workshop & Home Service');
             $table->decimal('price', 12, 2)->nullable();
             $table->string('icon')->nullable();
             $table->boolean('is_featured')->default(false);
