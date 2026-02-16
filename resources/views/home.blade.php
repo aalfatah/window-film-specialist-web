@@ -283,7 +283,13 @@
                     
                     <div class="flex justify-between items-center pt-6 border-t border-gray-100">
                         <a href="{{ route('service.show', $service->slug) }}" class="inline-flex items-center justify-between w-full text-slate-800 font-semibold group hover:text-brand-primary transition">
-                            <span class="text-sm font-bold text-slate-400">{{ __('message.service_price_from') }} Rp {{ number_format($service->price / 1000, 0) }}k</span>
+                            <span class="text-sm font-bold text-slate-400">{{ __('message.service_price_from') }} 
+                                @if($service->price >= 1000000)
+                                    Rp {{ number_format($service->price / 1000000, 1, ',', '.') }}jt
+                                @else
+                                    Rp {{ number_format($service->price / 1000, 0) }}k
+                                @endif
+                            </span>
                             <span class="text-brand-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
                                 Detail <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </span>
@@ -296,6 +302,38 @@
             </div>
         </div>
     </section>
+
+    {{-- <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+            <span class="w-10 h-1 bg-brand-primary rounded-full"></span>
+            Pilihan Paket Produk
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @foreach($service->packages as $package)
+            <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
+                <div class="text-brand-primary mb-4">
+                    <x-heroicon-o-building-office class="w-8 h-8"/> 
+                </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">{{ $package->name }}</h3>
+                <p class="text-slate-500 text-sm mb-4">{{ $package->description }}</p>
+                
+                <div class="space-y-2 mb-6">
+                    @foreach($package->features as $feature)
+                    <div class="flex items-center gap-2 text-xs text-slate-600">
+                        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        {{ $feature }}
+                    </div>
+                    @endforeach
+                </div>
+
+                <div class="flex justify-between items-center pt-4 border-t border-slate-50">
+                    <span class="text-xs text-slate-400">{{ $package->price_label }}</span>
+                    <a href="#" class="text-brand-primary font-bold text-sm hover:underline">Detail →</a>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section> --}}
 
     <section id="portfolio" class="py-10 bg-white">
         <div class="container mx-auto px-6">
