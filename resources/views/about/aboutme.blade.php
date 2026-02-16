@@ -65,14 +65,14 @@
                 <div class="relative md:pt-24">
                     <div class="absolute top-0 left-0 right-0 z-10 grid grid-cols-2 gap-4 px-4 md:px-8 transform -translate-y-1/4">
                         <div class="relative group">
-                            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop" 
+                            <img src="{{ isset($randomPortfolios[0]) ? asset('storage/' . $randomPortfolios[0]->image_path) : 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop' }}" 
                                 class="rounded-xl border-4 border-blue-800 shadow-2xl h-32 md:h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" 
                                 alt="Proses 1">
                             <div class="absolute inset-0 rounded-xl bg-blue-500/10 group-hover:bg-transparent transition-colors"></div>
                         </div>
                         
                         <div class="relative group">
-                            <img src="{{asset('images/about.webp')}}" 
+                            <img src="{{ isset($randomPortfolios[1]) ? asset('storage/' . $randomPortfolios[1]->image_path) : asset('images/about.webp') }}" 
                                 class="rounded-xl border-4 border-blue-800 shadow-2xl h-32 md:h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" 
                                 alt="Proses 2">
                             <div class="absolute inset-0 rounded-xl bg-blue-500/10 group-hover:bg-transparent transition-colors"></div>
