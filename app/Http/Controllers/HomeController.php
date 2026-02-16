@@ -32,7 +32,12 @@ class HomeController extends Controller
         $experience = date('Y') - 2021;
         $partners = Partner::where('is_active', true)->get();
 
-        return view('about.aboutme', compact('experience', 'partners'));
+        $randomPortfolios = Portfolio::where('is_active', true)
+                            ->inRandomOrder()
+                            ->take(2)
+                            ->get();
+
+        return view('about.aboutme', compact('experience', 'partners', 'randomPortfolios'));
     }
 
     public function showService($slug)
