@@ -12,7 +12,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $services = Service::where('is_featured', true)->get();
+        // $services = Service::where('is_featured', true)->get();
+        $allServices = Service::where('is_featured', true)->latest()->get();
+        $count = $allServices->count();
+
+        if ($count >= 6) {
+            $services = $allServices->take(6);
+        } elseif ($count >= 3) {
+            $services = $allServices->take(3);
+        } else {
+            $services = $allServices;
+        }
         $settings = Setting::pluck('value', 'key')->toArray();
         $portfolios = Portfolio::with('service')
             ->where('is_active', true)

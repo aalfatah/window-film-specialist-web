@@ -42,7 +42,7 @@
                 </div>
                 <div class="relative group" x-data="{ brandOpen: false }" @mouseenter="brandOpen = true" @mouseleave="brandOpen = false">
                     <button class="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-primary transition tracking-wider py-2">
-                        Brands
+                        {{ __('message.brands') }}
                         <svg class="w-4 h-4 transition-transform duration-300" :class="brandOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     
@@ -91,27 +91,69 @@
             </button>
         </div>
 
-        <div x-show="open" x-cloak @click.away="open = false" class="md:hidden bg-white border-t border-gray-100 shadow-xl">
-            <div class="flex flex-col p-6 space-y-4">
-                <a href="#tentang" @click="open = false" class="text-gray-600 font-semibold">{{ __('message.about') }}</a>
-                <a href="#layanan" @click="open = false" class="text-gray-600 font-semibold">{{ __('message.services') }}</a>
-                <a href="#portfolio" @click="open = false" class="text-gray-600 font-semibold">{{ __('message.portfolio') }}</a>
-                <a href="#kontak" @click="open = false" class="text-gray-600 font-semibold">{{ __('message.contact') }}</a>
-                <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200 w-max">
-                    <a href="{{ route('lang.switch', 'id') }}" 
-                       @click="open = false"
-                       class="px-3 py-1 text-[10px] font-bold rounded-full transition {{ app()->getLocale() == 'id' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400 hover:text-slate-600' }}">
-                        ID
-                    </a>
-                    <a href="{{ route('lang.switch', 'en') }}" 
-                       @click="open = false"
-                       class="px-3 py-1 text-[10px] font-bold rounded-full transition {{ app()->getLocale() == 'en' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400 hover:text-slate-600' }}">
-                        EN
+        <div x-show="open" 
+            x-cloak 
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            @click.away="open = false" 
+            class="md:hidden bg-white border-t border-gray-100 shadow-2xl absolute w-full left-0">
+            
+            <div class="flex flex-col p-6 space-y-2">
+                <a href="{{ route('about.me') }}" class="py-2 text-gray-700 font-bold hover:text-brand-primary transition border-b border-gray-50">
+                    {{ __('message.about') }}
+                </a>
+
+                <div x-data="{ mobServiceOpen: false }">
+                    <button @click="mobServiceOpen = !mobServiceOpen" class="w-full flex justify-between items-center py-2 text-gray-700 font-bold border-b border-gray-50">
+                        <span>{{ __('message.services') }}</span>
+                        <svg class="w-4 h-4 transition-transform" :class="mobServiceOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div x-show="mobServiceOpen" class="bg-slate-50 rounded-lg mt-1 px-4 py-2 space-y-2">
+                        @foreach(\App\Models\Service::where('is_featured', true)->get() as $navService)
+                            <a href="{{ route('service.show', $navService->slug) }}" class="block py-2 text-sm text-gray-600">
+                                {{ $navService->name }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div x-data="{ mobBrandOpen: false }">
+                    <button @click="mobBrandOpen = !mobBrandOpen" class="w-full flex justify-between items-center py-2 text-gray-700 font-bold border-b border-gray-50">
+                        <span>{{ __('message.brands') }}</span>
+                        <svg class="w-4 h-4 transition-transform" :class="mobBrandOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div x-show="mobBrandOpen" class="bg-slate-50 rounded-lg mt-1 px-4 py-2 space-y-2">
+                        @foreach(\App\Models\Partner::all() as $navPartner)
+                            <a href="{{ route('brand.detail', ['id' => $navPartner->id, 'slug' => Str::slug($navPartner->name)]) }}" class="flex items-center gap-2 py-2 text-sm text-gray-600">
+                                <img src="{{ asset('storage/' . $navPartner->logo_path) }}" class="w-5 h-5 object-contain opacity-70" alt="">
+                                {{ $navPartner->name }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <a href="{{ route('portfolio.index') }}" class="py-2 text-gray-700 font-bold hover:text-brand-primary transition border-b border-gray-50">
+                    {{ __('message.portfolio') }}
+                </a>
+
+                <div class="pt-4 space-y-4">
+                    <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200 w-max">
+                        <a href="{{ route('lang.switch', 'id') }}" 
+                        class="px-4 py-1.5 text-xs font-bold rounded-full transition {{ app()->getLocale() == 'id' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400' }}">
+                            ID
+                        </a>
+                        <a href="{{ route('lang.switch', 'en') }}" 
+                        class="px-4 py-1.5 text-xs font-bold rounded-full transition {{ app()->getLocale() == 'en' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400' }}">
+                            EN
+                        </a>
+                    </div>
+                    
+                    <a href="{{ route('whatsapp.redirect') }}" 
+                    class="block w-full bg-brand-dark text-white text-center py-4 rounded-xl font-bold shadow-lg shadow-brand-primary/20 active:scale-95 transition-transform">
+                        {{ __('message.consultation') }}
                     </a>
                 </div>
-                <a href="{{ route('whatsapp.redirect') }}" class="bg-brand-dark text-white text-center py-3 rounded-full font-bold">
-                    {{ __('message.consultation') }}
-                </a>
             </div>
         </div>
     </nav>

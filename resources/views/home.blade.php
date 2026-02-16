@@ -195,71 +195,6 @@
         </div>
     </section>
 
-    {{-- <section id="tentang" class="py-24 bg-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-gray-50 rounded-full -mr-32 -mt-32 z-0"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-50/50 rounded-full -ml-48 -mb-48 z-0"></div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col lg:flex-row gap-16 items-center">
-                
-                <div class="w-full lg:w-1/2 relative">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                        <img src="{{asset('images/about.png')}}" 
-                            alt="Teknisi Profesional" 
-                            class="w-full h-auto object-cover transform hover:scale-105 transition duration-700">
-                        <div class="absolute bottom-0 left-0 bg-brand-dark text-white p-6 rounded-tr-2xl">
-                            <span class="block text-4xl font-bold text-brand-primary">5+</span>
-                            <span class="text-sm font-light tracking-wide">Tahun<br>Pengalaman</span>
-                        </div>
-                    </div>
-                    <div class="absolute -z-10 top-6 -right-6 w-full h-full border-2 border-brand-primary/30 rounded-2xl"></div>
-                </div>
-
-                <div class="w-full lg:w-1/2">
-                    <span class="text-brand-primary font-bold uppercase tracking-widest text-sm mb-2 block">Tentang Fatih Jaya Film</span>
-                    <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-slate-900 leading-tight">
-                        Bukan Sekadar <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Pemasangan Biasa.</span>
-                    </h2>
-                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-                        Kami memahami bahwa mobil dan gedung Anda adalah aset berharga. Oleh karena itu, PT Fatih Jaya Film menerapkan standar instalasi <span class="font-semibold text-slate-800">"Zero Dust Tolerance"</span> untuk memastikan hasil yang jernih, rapi, dan tahan lama.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <span class="font-semibold text-slate-700 text-sm">Garansi Resmi Brand</span>
-                        </div>
-                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <span class="font-semibold text-slate-700 text-sm">Teknisi Bersertifikat</span>
-                        </div>
-                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <span class="font-semibold text-slate-700 text-sm">Home Service Gratis</span>
-                        </div>
-                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <span class="font-semibold text-slate-700 text-sm">Konsultasi Gratis</span>
-                        </div>
-                    </div>
-
-                    <a href="#portfolio" class="inline-flex items-center gap-2 text-brand-primary font-bold hover:text-brand-dark transition group">
-                        Lihat Bukti Kerja Kami 
-                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <section id="layanan" class="py-10 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-14">
@@ -302,38 +237,6 @@
             </div>
         </div>
     </section>
-
-    {{-- <section class="mb-12">
-        <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
-            <span class="w-10 h-1 bg-brand-primary rounded-full"></span>
-            Pilihan Paket Produk
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @foreach($service->packages as $package)
-            <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
-                <div class="text-brand-primary mb-4">
-                    <x-heroicon-o-building-office class="w-8 h-8"/> 
-                </div>
-                <h3 class="text-xl font-bold text-slate-800 mb-2">{{ $package->name }}</h3>
-                <p class="text-slate-500 text-sm mb-4">{{ $package->description }}</p>
-                
-                <div class="space-y-2 mb-6">
-                    @foreach($package->features as $feature)
-                    <div class="flex items-center gap-2 text-xs text-slate-600">
-                        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-                        {{ $feature }}
-                    </div>
-                    @endforeach
-                </div>
-
-                <div class="flex justify-between items-center pt-4 border-t border-slate-50">
-                    <span class="text-xs text-slate-400">{{ $package->price_label }}</span>
-                    <a href="#" class="text-brand-primary font-bold text-sm hover:underline">Detail →</a>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </section> --}}
 
     <section id="portfolio" class="py-10 bg-white">
         <div class="container mx-auto px-6">
