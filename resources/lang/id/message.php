@@ -161,4 +161,32 @@ return [
     'brand_cta_question' => 'Bingung memilih series :name yang tepat?',
     'brand_cta_desc' => 'Konsultasikan kebutuhan kaca film mobil atau bangunan Anda dengan tim ahli kami. Kami akan merekomendasikan kombinasi terbaik sesuai budget Anda.',
     'brand_cta_button' => 'Konsultasi Gratis via WhatsApp',
+
+    // Meta & Hero Section
+    'about_subtitle' => 'Tentang Kami',
+    
+    // Services Checklist
+    'service_car' => 'Kaca Film Mobil',
+    'service_building' => 'Kaca Film Gedung',
+    'guarantee_original' => 'Jaminan Produk <br>Original Resmi',
+    'btn_contact_us' => 'HUBUNGI KAMI',
+
+    // Visi & Misi
+    'vision_title' => 'Visi',
+    'mission_title' => 'Misi',
+
+    // Values / Why Choose Us
+    'values_subtitle' => 'Nilai Kami',
+    'values_title' => 'Mengapa Memilih Kami?',
+    'values_main_desc' => 'Komitmen kami terhadap kualitas adalah alasan utama ribuan pelanggan mempercayakan kendaraannya kepada Fatih Jaya Film.',
+
+    // Partners
+    'partner_title' => 'Daftar Pilihan Merk Kaca Film',
+    'partner_brand_prefix' => 'MERK',
+
+    // CTA Section
+    'cta_title' => 'Konsultasikan Kebutuhan Anda Sekarang',
+    'cta_desc' => 'Bingung memilih spesifikasi VLT atau TSER yang pas? Tim kami siap membantu memberikan rekomendasi terbaik sesuai budget dan jenis mobil Anda.',
+    'cta_btn_wa' => 'Chat WhatsApp',
+    'cta_btn_portfolio' => 'Lihat Portfolio',
 ];

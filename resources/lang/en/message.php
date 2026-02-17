@@ -11,6 +11,7 @@ return [
     'hero_title1' => 'Maximum Protection',
     'hero_title2' => 'Professional Look',
     'description_hero' => 'Specialists in window film installation for vehicles and properties. Free home service with transportation for the Greater Jakarta area. Official warranty',
+    'hero_subtitle' => 'Authorized Dealer & Installer',
     'buttonbooking_hero' => 'Book Schedule Now',
     'buttonview_hero' => 'View Work Results',
     'section_partners' => 'Brand & Partner',
@@ -162,4 +163,32 @@ return [
     'brand_cta_question' => 'Confused about choosing the right :name series?',
     'brand_cta_desc' => 'Consult your car or building window film needs with our expert team. We will recommend the best combination according to your budget.',
     'brand_cta_button' => 'Free Consultation via WhatsApp',
+
+    // Meta & Hero Section
+    'about_subtitle' => 'About Us',
+
+    // Services Checklist
+    'service_car' => 'Car Window Film',
+    'service_building' => 'Building Window Film',
+    'guarantee_original' => 'Genuine Official <br>Product Guarantee',
+    'btn_contact_us' => 'CONTACT US',
+
+    // Vision & Mission
+    'vision_title' => 'Our Vision',
+    'mission_title' => 'Our Mission',
+
+    // Values / Why Choose Us
+    'values_subtitle' => 'Our Values',
+    'values_title' => 'Why Choose Us?',
+    'values_main_desc' => 'Our commitment to quality is the main reason why thousands of customers trust Fatih Jaya Film with their vehicles.',
+    
+    // Partners
+    'partner_title' => 'List of Window Film Brands',
+    'partner_brand_prefix' => 'BRAND',
+
+    // CTA Section
+    'cta_title' => 'Consult Your Needs Now',
+    'cta_desc' => 'Confused about choosing the right VLT or TSER specifications? Our team is ready to help provide the best recommendations according to your budget and car type.',
+    'cta_btn_wa' => 'WhatsApp Chat',
+    'cta_btn_portfolio' => 'View Portfolio',
 ];

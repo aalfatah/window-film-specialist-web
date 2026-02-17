@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Setting;
+use App\Models\Category;
+use App\Models\AboutPage;
 
 class HomeController extends Controller
 {
@@ -47,7 +49,15 @@ class HomeController extends Controller
                             ->take(2)
                             ->get();
 
-        return view('about.aboutme', compact('experience', 'partners', 'randomPortfolios'));
+        $about = AboutPage::first();
+            if (!$about) {
+            $about = new AboutPage(); 
+            $about->heading = 'Profil Perusahaan';
+        }
+
+        $categories = Category::all();
+
+        return view('about.aboutme', compact('experience', 'partners', 'randomPortfolios', 'about', 'categories'));
     }
 
     public function showService($slug)
