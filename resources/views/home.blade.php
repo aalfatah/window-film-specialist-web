@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Home - Spesialis Kaca Film')
+@section('title', 'Home - ' . __('message.specialist_title'))
 
 @section('content')
     <section class="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden -mt-20">
@@ -11,7 +11,7 @@
 
         <div class="relative z-10 max-w-4xl mx-auto text-white">
             <span class="bg-brand-primary/20 text-brand-primary px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block backdrop-blur-sm border border-brand-primary/30">
-                Authorized Dealer & Installer
+                {{ __('message.hero_subtitle')}}
             </span>
             <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                 {{ __('message.hero_title1') }}, <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">{{ __('message.hero_title2') }}.</span>
@@ -137,7 +137,7 @@
                             <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-sky-500">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <span class="font-semibold text-slate-700 text-sm">{{ __('message.about_span4') }}</span>
+                            <span class="font-semibold text-slate-700 text-sm">{{ __('message.consultation') }}</span>
                         </div>
                         <div class="flex items-center gap-3 bg-white rounded-lg">
                             <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-sky-500">

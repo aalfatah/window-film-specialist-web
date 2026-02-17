@@ -21,10 +21,10 @@
                     @endif
                     
                     <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6">
-                        Kaca Film <span class="text-brand-primary">{{ $partner->name }}</span>
+                        {{ __('message.brand_window_film')}} <span class="text-brand-primary">{{ $partner->name }}</span>
                     </h1>
                     <p class="text-gray-400 text-lg max-w-3xl leading-relaxed">
-                        Authorized Dealer Resmi. Temukan perlindungan maksimal untuk kendaraan Anda dengan teknologi mutakhir dari {{ $partner->name }}. Dirancang untuk menolak panas, sinar UV, dan menjaga privasi Anda.
+                        {{ __('message.brand_hero_desc', ['name' => $partner->name]) }}
                     </p>
                 </div>
             </div>
@@ -33,9 +33,9 @@
         <section class="py-12 bg-white border-b border-gray-100">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <span class="text-brand-primary font-bold uppercase tracking-wider text-sm">Quick Comparison</span>
-                    <h2 class="text-3xl font-bold text-slate-800 mt-2">Perbandingan Performa Series</h2>
-                    <p class="text-gray-500 mt-2">Data spesifikasi tertinggi (Highest Specs) dari setiap series.</p>
+                    <span class="text-brand-primary font-bold uppercase tracking-wider text-sm">{{ __('message.brand_comparison_label')}}</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">{{ __('message.brand_comparison_title')}}</h2>
+                    <p class="text-gray-500 mt-2">{{ __('message.brand_comparison_desc')}}</p>
                 </div>
 
                 <div class="bg-slate-800 rounded-[2.5rem] p-4 md:p-8 border border-white/5 shadow-2xl">
@@ -43,7 +43,7 @@
                         <table class="w-full text-sm text-left border-separate border-spacing-y-2">
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-5 font-bold text-slate-400 uppercase tracking-widest text-xs">Kriteria</th>
+                                    <th class="px-6 py-5 font-bold text-slate-400 uppercase tracking-widest text-xs">{{ __('message.brand_criteria')}}</th>
                                     @foreach($partner->products as $product)
                                         <th class="px-6 py-5 font-black text-white text-center">
                                             <div class="bg-slate-700/50 py-3 rounded-2xl border border-white/5">
@@ -62,7 +62,7 @@
                                             <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                                             </div>
-                                            VLT (Cahaya Masuk)
+                                            {{ __('message.vlt')}}
                                         </div>
                                     </td>
                                     @foreach($partner->products as $product)
@@ -80,7 +80,7 @@
                                             <div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                             </div>
-                                            IRR (Tolak Panas)
+                                            {{ __('message.irr')}}
                                         </div>
                                     </td>
                                     @foreach($partner->products as $product)
@@ -115,7 +115,7 @@
                                     <td class="px-6 py-6 text-center">
                                         <button @click="activeSeries = {{ $idx }}; document.getElementById('detail-section').scrollIntoView({behavior: 'smooth'})" 
                                                 class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-brand-primary text-xs font-bold transition-all border border-white/5">
-                                            Lihat Detail &darr;
+                                            {{ __('message.brand_view_detail')}} &darr;
                                         </button>
                                     </td>
                                     @endforeach
@@ -133,8 +133,8 @@
                     <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
                         <div class="max-w-xl">
                             <span class="text-brand-primary font-bold tracking-widest text-sm uppercase">Technical Glossary</span>
-                            <h2 class="text-3xl font-bold text-slate-900 mt-2">Memahami Spesifikasi Kaca Film</h2>
-                            <p class="text-gray-500 mt-4 text-sm leading-relaxed">Jangan hanya melihat kegelapan, pahami angka di balik perlindungan kenyamanan Anda.</p>
+                            <h2 class="text-3xl font-bold text-slate-900 mt-2">{{ __('message.brand_glossary_title')}}</h2>
+                            <p class="text-gray-500 mt-4 text-sm leading-relaxed">{{ __('message.brand_glossary_desc')}}</p>
                         </div>
                         <div class="hidden md:block">
                             <div class="flex -space-x-3">
@@ -166,7 +166,7 @@
         <section id="detail-section" class="py-12 bg-slate-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold text-slate-900">Spesifikasi Tiap Series Kaca Film {{ $partner->name }}</h2>
+                    <h2 class="text-4xl font-bold text-slate-900">{{ __('message.brand_spec_title', ['name' => $partner->name]) }}</h2>
                 </div>
 
                 <div class="flex flex-col lg:flex-row bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100">
@@ -239,7 +239,7 @@
                             <div class="bg-slate-50 p-6 rounded-2xl">
                                 <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
                                     <svg class="w-5 h-5 text-brand-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                    Keunggulan Utama {{ $product->name }}
+                                    {{ __('message.brand_main_advantage')}} {{ $product->name }}
                                 </h4>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                     @if($product->features)
@@ -269,35 +269,23 @@
                         <span class="p-2 bg-yellow-400 rounded-lg text-white">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </span>
-                        Tips Memilih Kaca Film Original
+                        {{ __('message.brand_tips_title')}}
                     </h2>
                     <div class="space-y-4">
-                        <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 border-l-4 border-brand-primary">
-                            <div class="font-bold text-2xl text-slate-300">01</div>
+                        @foreach (config('tips') as $item)
+                            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 border-l-4 border-brand-primary">
+                            <div class="font-bold text-2xl text-slate-300">{{ __($item['label']) }}</div>
                             <div>
-                                <h4 class="font-bold text-slate-800">Cek Kartu Garansi Digital</h4>
-                                <p class="text-sm text-gray-600">Pastikan Anda mendapatkan kartu garansi resmi yang bisa dicek online di website principal (seperti 3M, V-Kool, dll).</p>
+                                <h4 class="font-bold text-slate-800">{{ __($item['title']) }}</h4>
+                                <p class="text-sm text-gray-600">{{ __($item['desc']) }}</p>
                             </div>
                         </div>
-                        <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 border-l-4 border-brand-primary">
-                            <div class="font-bold text-2xl text-slate-300">02</div>
-                            <div>
-                                <h4 class="font-bold text-slate-800">Uji dengan Alat Transmisi</h4>
-                                <p class="text-sm text-gray-600">Dealer resmi selalu memiliki alat ukur (3 in 1 meter) untuk membuktikan nilai VLT, UVR, dan IRR sesuai spesifikasi.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 border-l-4 border-brand-primary">
-                            <div class="font-bold text-2xl text-slate-300">03</div>
-                            <div>
-                                <h4 class="font-bold text-slate-800">Perhatikan Logo Grafir</h4>
-                                <p class="text-sm text-gray-600">Kaca film original biasanya memiliki logo grafir halus (watermark) pada lapisan filmnya yang tidak mudah terkelupas.</p>
-                            </div>
-                        </div>
+                        @endforeach                        
                     </div>
                 </div>
 
                 <div class="w-full lg:w-1/2">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Pilihan Merk Lainnya</h2>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">{{ __('message.brand_other_brands')}}</h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
                         @foreach(\App\Models\Partner::where('id', '!=', $partner->id)->get() as $otherPartner)
                         <a href="{{ route('brand.detail', ['id' => $otherPartner->id, 'slug' => \Illuminate\Support\Str::slug($otherPartner->name)]) }}" class="group p-4 bg-white border border-gray-200 rounded-2xl hover:border-brand-primary hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center text-center">
@@ -315,10 +303,10 @@
     <section class="py-12 bg-brand-dark text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-brand-dark to-slate-900"></div>
         <div class="relative z-10 container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white mb-6">Bingung memilih series {{ $partner->name }} yang tepat?</h2>
-            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Konsultasikan kebutuhan kaca film mobil atau bangunan Anda dengan tim ahli kami. Kami akan merekomendasikan kombinasi terbaik sesuai budget Anda.</p>
+            <h2 class="text-3xl font-bold text-white mb-6">{{ __('message.brand_cta_question', ['name' => $partner->name]) }}</h2>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">{{ __('message.brand_cta_desc')}}</p>
             <a href="{{ route('whatsapp.redirect') }}" class="inline-block bg-brand-primary text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-brand-primary/30 hover:bg-green-600 transition">
-                Konsultasi Gratis via WhatsApp
+                {{ __('message.brand_cta_button')}}
             </a>
         </div>
     </section>

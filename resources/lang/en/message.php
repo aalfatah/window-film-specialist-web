@@ -3,6 +3,7 @@
 return [
     'home' => 'Home',
     'services' => 'Services',
+    'brands' => 'Brand',
     'portfolio' => 'Portfolio',
     'about' => 'About',
     'contact' => 'Contact Us',
@@ -32,6 +33,9 @@ return [
     'service_price_from' => 'Starting from',
     'portfolio_title' => 'Work Gallery',
     'portfolio_subtitle' => 'Proof of Our Quality',
+    'portfolio_sub' => 'A collection of our window film installation results. Quality transparency is our top priority.',
+    'portfolio_offer' => 'Want Results Like This ?',
+    'portfolio_offer_sub' => 'Consult your window film needs for free with our team of experts.',
     'testimonials_title' => 'Customer Feedback',
     'testimonials_subtitle' => 'What Our Clients Say?',
     'view_all_portfolio' => 'View All Projects',
@@ -41,4 +45,121 @@ return [
     'desc_footer' => 'Professional solution for your vehicle and property window film needs. Serving the Greater Jakarta area with a Home Service system.',
     'contact_footer' => 'Contact Us',
     'menuquick_footer' => 'Quick Menu',
+    'servicedetail_button' => 'Get a Quote',
+    'servicedetail_response' => 'Quick response within 5 minutes',
+    'servicedetail_promo' => 'Special Discount?',
+    'servicedetail_promodesc' => 'Get a discount for Full Body installation.',
+    'servicedetail_askpromo' => 'Ask About Promotions',
+    'servicedetail_h2_1' => 'Service Description',
+    'servicedetail_h2_2' => 'Product Options',
+    'servicedetail_h2_3' => 'Work Process',
+    'servicedetail_h2_4' => 'Frequently Asked Questions',
+    'specialist_title' => 'Window Film Specialist',
+    'trust_product' => 'Product',
+    'trust_product_val' => '100% Original',
+    'trust_process' => 'Work',
+    'trust_process_val' => '2-4 Hours',
+    'trust_warranty' => 'Warranty',
+    'trust_warranty_val' => 'Official 5 Years',
+    'faq_q1' => 'Can installation be done at home?',
+    'faq_a1' => 'Yes, we provide Home Service for the Greater Jakarta area. Make sure you have a covered area (such as a garage) and access to electricity.',
+
+    'glossary' => [
+        'vlt' => [
+            'desc'  => 'Darkness level. The lower the number, the darker the glass will appear.',
+        ],
+        'tser' => [
+            'desc'  => 'The most accurate indicator of heat rejection. The higher the value, the cooler the cabin.',
+        ],
+        'irr' => [
+            'desc'  => 'Rejects infrared radiation that causes a stinging sensation on the skin.',
+        ],
+        'uvr' => [
+            'desc'  => 'Blocks 99% of UV rays to prevent the interior from fading quickly and maintains skin health.',
+        ],
+        'vlr' => [
+            'desc'  => 'Reflectiveness is like a mirror. A lower number means a clearer view outward.',
+        ],
+        'glare' => [
+            'desc'  => 'Reduces glare from oncoming vehicle headlights or sharp sunlight.',
+        ],
+    ],
+
+    'workflow' => [
+        'clean' => [
+            'label' => '1',
+            'title' => 'Glass Cleaning',
+            'desc'  => 'Sterilization of glass from mold and microscopic dust.',
+        ],
+        'pattern' => [
+            'label' => '2',
+            'title' => 'Precision Pattern',
+            'desc'  => 'Cutting glass film using heat shrinking techniques.',
+        ],
+        'install' => [
+            'label' => '3',
+            'title' => 'Installation',
+            'desc'  => 'Installation in a closed room to minimize dust.',
+        ],
+        'quality' => [
+            'label' => '4',
+            'title' => 'Quality Control',
+            'desc'  => 'Final inspection before unit handover.',
+        ],
+    ],
+
+    // Portfolio Detail Unique Strings
+    'portfolio_project_desc' => 'Project Description',
+    'portfolio_cta_title' => 'Interested in this result?',
+    'portfolio_cta_desc' => 'Get a free consultation and cost estimate for your vehicle or building now.',
+    'portfolio_btn_consult' => 'Consult Now',
+    'portfolio_share' => 'Share:',
+    'portfolio_info_title' => 'Project Info',
+    'portfolio_category' => 'Category',
+    'portfolio_completed' => 'Completed On',
+    'portfolio_ask_button' => 'Inquire About This Project',
+    'portfolio_other_title' => 'Other Projects',
+    'portfolio_view_all' => 'View All',
+
+    // Brand Detail Page
+    'brand_window_film' => 'Window Film',
+    'brand_auth_dealer' => 'Official Authorized Dealer.',
+    'brand_hero_desc' => 'Discover maximum protection for your vehicle with cutting-edge technology from :name. Designed to reject heat, UV rays, and maintain your privacy.',
+    'brand_comparison_label' => 'Quick Comparison',
+    'brand_comparison_title' => 'Series Performance Comparison',
+    'brand_comparison_desc' => 'Highest specification data from each series.',
+    'brand_criteria' => 'Criteria',
+    'vlt' => 'VLT (Light Enters)',
+    'irr' => 'IRR (Heat-Resistant)',
+    'brand_view_detail' => 'View Detail',
+    'brand_glossary_title' => 'Understanding Window Film Specifications',
+    'brand_glossary_desc' => 'Dont just look at the darkness, understand the numbers behind your comfort protection.',
+    'brand_spec_title' => ':name Window Film Series Specifications',
+    'brand_main_advantage' => 'Main Advantages',
+    'brand_other_brands' => 'Other Brand Choices',
+
+    // Tips Section
+    'brand_tips_title' => 'Tips for Choosing Original Window Film',
+    'tips' => [
+        'card' => [
+            'label' => '01',
+            'title' => 'Check Digital Warranty Card',
+            'desc'  => 'Ensure you receive an official warranty card that can be checked online on the principals website (such as 3M, V-Kool, etc.).',
+        ],
+        'check' => [
+            'label' => '02',
+            'title' => 'Test with Transmission Tool',
+            'desc'  => 'Authorized dealers always have measuring tools (3-in-1 meters) to prove that the VLT, UVR, and IRR values meet specifications.',
+        ],
+        'logo' => [
+            'label' => '03',
+            'title' => 'Pay Attention to the Engraved Logo',
+            'desc'  => 'Original window film usually has a fine engraved logo (watermark) on the film layer that is not easily peeled off.',
+        ],
+    ],
+
+    // CTA Section
+    'brand_cta_question' => 'Confused about choosing the right :name series?',
+    'brand_cta_desc' => 'Consult your car or building window film needs with our expert team. We will recommend the best combination according to your budget.',
+    'brand_cta_button' => 'Free Consultation via WhatsApp',
 ];

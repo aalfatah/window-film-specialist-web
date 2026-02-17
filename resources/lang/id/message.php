@@ -3,6 +3,7 @@
 return [
     'home' => 'Beranda',
     'services' => 'Layanan',
+    'brands' => 'Merek',
     'portfolio' => 'Portfolio',
     'about' => 'Tentang',
     'contact' => 'Kontak',
@@ -10,6 +11,7 @@ return [
     'hero_title1' => 'Perlindungan Maksimal',
     'hero_title2' => 'Tampilan Profesional',
     'description_hero' => 'Spesialis Kaca Film Kendaraan & Properti dengan Layanan Home Service gratis transport untuk area Jabodetabek. Bergaransi Resmi.',
+    'hero_subtitle' => 'Dealer dan Instalator Resmi',
     'buttonbooking_hero' => 'Booking Jadwal Sekarang',
     'buttonview_hero' => 'Lihat Hasil Kerja',
     'section_partners' => 'Brand & Partner',
@@ -20,7 +22,6 @@ return [
     'about_span1' => 'Garansi Resmi Brand',
     'about_span2' => 'Teknisi Bersertifikat',
     'about_span3' => 'Layanan Home Service',
-    'about_span4' => 'Konsultasi Gratis',
     'about_span5' => 'Pengerjaan Bebas Debu',
     'advantage_title' => 'Kenapa Memilih Kaca Film Berkualitas ?',
     'advantage_grid1' => 'Melindungi interior & kulit dari bahaya matahari.',
@@ -30,8 +31,11 @@ return [
     'services_title' => 'Layanan Kami',
     'services_subtitle' => 'Solusi Kaca Film Terlengkap',
     'service_price_from' => 'Mulai dari',
-    'portfolio_title' => 'Galeri Pengerjaan',
+    'portfolio_title' => 'Galeri Pekerjaan',
     'portfolio_subtitle' => 'Bukti Kualitas Kami',
+    'portfolio_sub' => 'Kumpulan hasil pemasangan kaca film kami. Transparansi kualitas adalah prioritas utama kami.',
+    'portfolio_offer' => 'Ingin Hasil Seperti Ini ?',
+    'portfolio_offer_sub' => 'Konsultasikan kebutuhan kaca film Anda secara gratis dengan tim ahli kami.',
     'testimonials_title' => 'Feedback Pelanggan',
     'testimonials_subtitle' => 'Apa Kata Klien Kami ?',
     'view_all_portfolio' => 'Lihat Semua Project',
@@ -41,4 +45,120 @@ return [
     'desc_footer' => 'Solusi profesional untuk kebutuhan kaca film kendaraan dan properti Anda. Melayani area Jabodetabek dengan sistem Home Service.',
     'contact_footer' => 'Hubungi Kami',
     'menuquick_footer' => 'Menu Cepat',
+    'servicedetail_button' => 'Dapatkan Penawaran',
+    'servicedetail_response' => 'Respon cepat dalam 5 menit',
+    'servicedetail_promo' => 'Diskon Spesial ?',
+    'servicedetail_promodesc' => 'Dapatkan potongan harga untuk pemasangan Full Body.',
+    'servicedetail_askpromo' => 'Tanya Promo',
+    'servicedetail_h2_1' => 'Deskripsi Layanan',
+    'servicedetail_h2_2' => 'Pilihan Produk',
+    'servicedetail_h2_3' => 'Proses Pengerjaan',
+    'servicedetail_h2_4' => 'Pertanyaan Umum',
+    'specialist_title' => 'Spesialis Kaca Film',
+    'trust_product' => 'Produk',
+    'trust_product_val' => '100% Original',
+    'trust_process' => 'Pengerjaan',
+    'trust_process_val' => '2-4 Jam',
+    'trust_warranty' => 'Garansi',
+    'trust_warranty_val' => 'Resmi 5 Thn',
+    'faq_q1' => 'Apakah pemasangan bisa dilakukan di rumah?',
+    'faq_a1' => 'Ya, kami menyediakan layanan Home Service untuk wilayah Jabodetabek. Pastikan Anda memiliki area tertutup (seperti garasi) dan akses listrik.',
+
+    'glossary' => [
+        'vlt' => [
+            'desc'  => 'Tingkat kegelapan. Semakin rendah angkanya, semakin gelap tampilan kacanya.',
+        ],
+        'tser' => [
+            'desc'  => 'Indikator paling akurat untuk tolak panas. Semakin tinggi, kabin semakin adem.',
+        ],
+        'irr' => [
+            'desc'  => 'Menolak radiasi infra merah yang menyebabkan rasa menyengat di kulit.',
+        ],
+        'uvr' => [
+            'desc'  => 'Menghalau 99% sinar UV agar interior tidak cepat pudar dan menjaga kesehatan kulit.',
+        ],
+        'vlr' => [
+            'desc'  => 'Tingkat pantulan seperti cermin. Angka rendah berarti pandangan keluar lebih jernih.',
+        ],
+        'glare' => [
+            'desc'  => 'Mengurangi silau lampu kendaraan dari lawan arah atau sinar matahari yang tajam.',
+        ],
+    ],
+
+    'workflow' => [
+        'clean' => [
+            'label' => '1',
+            'title' => 'Pembersihan Kaca',
+            'desc'  => 'Sterilisasi kaca dari jamur dan debu mikroskopis.',
+        ],
+        'pattern' => [
+            'label' => '2',
+            'title' => 'Pola Presisi',
+            'desc'  => 'Pemotongan kaca film menggunakan teknik heat shrinking.',
+        ],
+        'install' => [
+            'label' => '3',
+            'title' => 'Pemasangan',
+            'desc'  => 'Instalasi di ruang tertutup untuk meminimalisir debu.',
+        ],
+        'quality' => [
+            'label' => '4',
+            'title' => 'Kontrol Kualitas',
+            'desc'  => 'Pengecekan akhir sebelum serah terima unit.',
+        ],
+    ],
+
+    // Portfolio Detail Unique Strings
+    'portfolio_project_desc' => 'Deskripsi Project',
+    'portfolio_cta_title' => 'Tertarik dengan hasil pengerjaan ini?',
+    'portfolio_cta_desc' => 'Dapatkan konsultasi gratis dan estimasi biaya untuk kendaraan atau gedung Anda sekarang.',
+    'portfolio_btn_consult' => 'Konsultasi Sekarang',
+    'portfolio_share' => 'Bagikan:',
+    'portfolio_info_title' => 'Project Info',
+    'portfolio_category' => 'Kategori',
+    'portfolio_completed' => 'Selesai Pada',
+    'portfolio_ask_button' => 'Tanya Project Ini',
+    'portfolio_other_title' => 'Project Lainnya',
+    'portfolio_view_all' => 'Lihat Semua',
+
+    // Brand Detail Page
+    'brand_window_film' => 'Kaca Film',
+    'brand_hero_desc' => 'Authorized Dealer Resmi. Temukan perlindungan maksimal untuk kendaraan Anda dengan teknologi mutakhir dari :name. Dirancang untuk menolak panas, sinar UV, dan menjaga privasi Anda.',
+    'brand_comparison_label' => 'Quick Comparison',
+    'brand_comparison_title' => 'Perbandingan Performa Series',
+    'brand_comparison_desc' => 'Data spesifikasi tertinggi (Highest Specs) dari setiap series.',
+    'brand_criteria' => 'Kriteria',
+    'vlt' => 'VLT (Cahaya Masuk)',
+    'irr' => 'IRR (Tolak Panas)',
+    'brand_view_detail' => 'Lihat Detail',
+    'brand_glossary_title' => 'Memahami Spesifikasi Kaca Film',
+    'brand_glossary_desc' => 'Jangan hanya melihat kegelapan, pahami angka di balik perlindungan kenyamanan Anda.',
+    'brand_spec_title' => 'Spesifikasi Tiap Series Kaca Film :name',
+    'brand_main_advantage' => 'Keunggulan Utama',
+    'brand_other_brands' => 'Pilihan Merk Lainnya',
+    
+    // Tips Section
+    'brand_tips_title' => 'Tips Memilih Kaca Film Original',
+    'tips' => [
+        'card' => [
+            'label' => '01',
+            'title' => 'Cek Kartu Garansi Digital',
+            'desc'  => 'Pastikan Anda mendapatkan kartu garansi resmi yang bisa dicek online di website principal (seperti 3M, V-Kool, dll).',
+        ],
+        'check' => [
+            'label' => '02',
+            'title' => 'Uji dengan Alat Transmisi',
+            'desc'  => 'Dealer resmi selalu memiliki alat ukur (3 in 1 meter) untuk membuktikan nilai VLT, UVR, dan IRR sesuai spesifikasi.',
+        ],
+        'logo' => [
+            'label' => '03',
+            'title' => 'Perhatikan Logo Grafir',
+            'desc'  => 'Kaca film original biasanya memiliki logo grafir halus (watermark) pada lapisan filmnya yang tidak mudah terkelupas.',
+        ],
+    ],
+
+    // CTA Section
+    'brand_cta_question' => 'Bingung memilih series :name yang tepat?',
+    'brand_cta_desc' => 'Konsultasikan kebutuhan kaca film mobil atau bangunan Anda dengan tim ahli kami. Kami akan merekomendasikan kombinasi terbaik sesuai budget Anda.',
+    'brand_cta_button' => 'Konsultasi Gratis via WhatsApp',
 ];

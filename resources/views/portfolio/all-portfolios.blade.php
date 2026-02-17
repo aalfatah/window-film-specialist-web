@@ -4,9 +4,9 @@
 @section('content')
     <section class="bg-brand-dark text-white py-16 border-b-4 border-brand-primary">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">Galeri Pekerjaan</h1>
+            <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">{{ __('message.portfolio_title') }}</h1>
             <p class="text-gray-400 max-w-2xl mx-auto text-lg">
-                Kumpulan hasil pemasangan kaca film kami. Transparansi kualitas adalah prioritas utama kami.
+                {{ __('message.portfolio_sub')}}
             </p>
         </div>
     </section>
@@ -55,11 +55,11 @@
 
     <section class="bg-white border-t border-gray-100 py-12">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-black text-brand-dark mb-4">INGIN HASIL SEPERTI INI?</h2>
-            <p class="text-gray-500 mb-10">Konsultasikan kebutuhan kaca film Anda secara gratis dengan tim ahli kami.</p>
+            <h2 class="text-3xl font-black text-brand-dark mb-4">{{ __('message.portfolio_offer')}}</h2>
+            <p class="text-gray-500 mb-10">{{ __('message.portfolio_offer_sub')}}</p>
             <a href="{{ route('whatsapp.redirect') }}" 
                class="inline-flex items-center gap-4 bg-brand-primary text-brand-dark font-black px-10 py-5 rounded-2xl hover:bg-brand-dark hover:text-white transition duration-500 shadow-xl shadow-green-100 uppercase tracking-widest text-sm">
-                Hubungi via WhatsApp
+                {{ __('message.offer_button')}}
             </a>
         </div>
     </section>
