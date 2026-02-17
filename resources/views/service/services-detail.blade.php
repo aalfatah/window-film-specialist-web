@@ -8,7 +8,7 @@
     <div class="absolute inset-0 z-0">
         <img src="{{ $service->image ? asset('storage/' . $service->image) : 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop' }}" 
              alt="{{ $service->name }}" 
-             class="w-full h-full object-cover">
+             class="w-full h-full object-cover" fetchpriority="high">
         {{-- Gradient Overlay --}}
         <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-slate-900/40"></div>
     </div>

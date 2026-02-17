@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Setting;
+use App\Models\Testimonial;
 use App\Models\Category;
 use App\Models\AboutPage;
 
@@ -34,9 +35,22 @@ class HomeController extends Controller
 
         $experience = date('Y') - 2021;
 
+        $testimonials = Testimonial::where('is_visible', true)
+            ->latest()
+            ->get();
+
+        $displayItems = $testimonials;
+        if ($testimonials->count() > 0 && $testimonials->count() < 10) {
+            $multiplier = ceil(10 / $testimonials->count());
+            // Mirror data agar animasi seamless
+            for ($i = 0; $i < $multiplier; $i++) {
+                $displayItems = $displayItems->concat($testimonials);
+            }
+        }
+
         $partners = Partner::where('is_active', true)->get();
 
-        return view('home', compact('services', 'portfolios', 'settings', 'partners', 'experience'));
+        return view('home', compact('services', 'portfolios', 'settings', 'partners', 'experience', 'testimonials', 'displayItems'));
     }
 
     public function about()

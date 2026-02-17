@@ -4,7 +4,7 @@
 @section('content')
     <section class="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden -mt-20">
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/hero.webp') }}" loading="lazy" 
+            <img src="{{ asset('images/hero.webp') }}" fetchpriority="high" 
                  class="w-full h-full object-cover" alt="Background Mobil Mewah">
             <div class="absolute inset-0 bg-brand-dark/80 mix-blend-multiply"></div>
         </div>
@@ -45,39 +45,22 @@
             if ($repeat < 2) $repeat = 2; 
         @endphp
         
-        <div   div class="flex overflow-hidden group">
+        <div class="flex overflow-hidden group">
             <div class="flex items-center w-max animate-marquee">
-                
-                <div class="flex items-center">
-                    @for ($i = 0; $i < $repeat; $i++)
+                @for ($j = 0; $j < 2; $j++)
+                    <div class="flex items-center">
                         @foreach ($partners as $partner)
-                        <div class="flex items-center justify-center px-10">
-                            <div class="w-32 h-16 flex items-center justify-center">
-                                <img src="{{ asset('storage/' . $partner->logo_path) }}" loading="lazy" 
-                                    alt="{{ $partner->name }}" 
-                                    class="max-h-12 w-auto object-contain filter grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+                            <div class="flex items-center justify-center px-10">
+                                <div class="w-32 h-16 flex items-center justify-center">
+                                    <img src="{{ asset('storage/' . $partner->logo_path) }}" 
+                                        alt="{{ $partner->name }}" 
+                                        class="max-h-12 w-auto object-contain filter grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+                                </div>
+                                <div class="w-1.5 h-1.5 bg-gray-200 rounded-full ml-10"></div>
                             </div>
-                            <div class="w-1.5 h-1.5 bg-gray-200 rounded-full ml-10"></div>
-                        </div>
                         @endforeach
-                    @endfor
-                </div>
-
-                <div class="flex items-center">
-                    @for ($i = 0; $i < $repeat; $i++)
-                        @foreach ($partners as $partner)
-                        <div class="flex items-center justify-center px-10">
-                            <div class="w-32 h-16 flex items-center justify-center">
-                                <img src="{{ asset('storage/' . $partner->logo_path) }}" 
-                                    alt="{{ $partner->name }}" loading="lazy"
-                                    class="max-h-12 w-auto object-contain filter grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
-                            </div>
-                            <div class="w-1.5 h-1.5 bg-gray-200 rounded-full ml-10"></div>
-                        </div>
-                        @endforeach
-                    @endfor
-                </div>
-
+                    </div>
+                @endfor
             </div>
         </div>
     </section>
@@ -160,19 +143,24 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ __('message.advantage_title') }}</h2>
                 <div class="w-24 h-1 bg-brand-primary mx-auto rounded-full"></div>
             </div>
-
+            @php
+                $highestTser = $partners->flatMap->products->max('max_tser') ?? 79;
+                $highestIrr = $partners->flatMap->products->max('max_irr') ?? 79;
+                // $highestVlt = $partners->flatMap->products->max('max_vlt') ?? 79;
+            @endphp
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 
                 <div class="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-brand-primary/10 hover:border-brand-primary/50 transition-all duration-500 animate-float" style="animation-delay: 0s">
                     <div class="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
-                    <div class="text-4xl md:text-5xl font-extrabold text-yellow-400 mb-4 tracking-tighter">98%</div>
+                    <div class="text-4xl md:text-5xl font-extrabold text-yellow-400 mb-4 tracking-tighter">{{ $highestIrr }}%</div>
                     <h3 class="text-sm md:text-base font-bold uppercase tracking-widest text-white mb-2">UV Protection</h3>
                     <p class="text-xs md:text-sm text-gray-400 group-hover:text-gray-200 transition">{{ __('message.advantage_grid1') }}</p>
                 </div>
-
+                    
                 <div class="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-brand-primary/10 hover:border-brand-primary/50 transition-all duration-500 animate-float" style="animation-delay: 0.5s">
                     <div class="absolute -top-4 -right-4 w-12 h-12 bg-brand-primary/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
-                    <div class="text-4xl md:text-5xl font-extrabold text-brand-primary mb-4 tracking-tighter">79%</div>
+                    
+                    <div class="text-4xl md:text-5xl font-extrabold text-brand-primary mb-4 tracking-tighter">{{ $highestTser }}%</div>
                     <h3 class="text-sm md:text-base font-bold uppercase tracking-widest text-white mb-2">Heat Rejection</h3>
                     <p class="text-xs md:text-sm text-gray-400 group-hover:text-gray-200 transition">{{ __('message.advantage_grid2') }}</p>
                 </div>
@@ -288,18 +276,6 @@
         </div>
     </section>
 
-    @php
-        $testimonials = \App\Models\Testimonial::where('is_visible', true)->latest()->get();
-
-        // Logika duplikasi data agar marquee tidak kosong jika data sedikit
-        $displayItems = $testimonials;
-        if($testimonials->count() > 0 && $testimonials->count() < 10) {
-            for($i = 0; $i < ceil(10 / $testimonials->count()); $i++) {
-                $displayItems = $displayItems->concat($testimonials);
-            }
-        }
-    @endphp
-
     @if($testimonials->count() > 0)
     <section class="py-10 bg-white overflow-hidden">
         <div class="container mx-auto px-4 mb-10 text-center">
@@ -307,7 +283,7 @@
             <h2 class="text-4xl font-extrabold text-gray-900 mt-2">{{ __('message.testimonials_subtitle') }}</h2>
         </div>
 
-        <div class="testimonial-wrapper">
+        <div class="testimonial-wrapper group">
             <div class="marquee-container">
                 <div class="marquee-content">
                     @foreach($displayItems as $item)
@@ -320,7 +296,7 @@
                             </div>
 
                             <div class="testimonial-text text-gray-600 text-lg leading-relaxed">
-                                {!! $item->content !!}
+                                {{ (strip_tags($item->content)) }}
                             </div>
                         </div>
 
@@ -357,3 +333,15 @@
         </div>
     </section>
 @endsection
+@push('scripts')
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "AutoBodyShop",
+        "name": "CV Fatih Jaya",
+        "description": "{{ __('message.description_hero') }}",
+        "image": "{{ asset('images/hero.webp') }}",
+        "telephone": "+628123456789"
+        }
+    </script>
+@endpush

@@ -88,32 +88,37 @@ html {
     overflow: hidden;
     gap: 24px;
     padding: 20px 0;
+    cursor: grab;
 }
 
+/* Container animasi */
 .marquee-content {
     display: flex;
     flex-shrink: 0;
     gap: 24px;
-    animation: scroll 40s linear infinite; /* Atur angka 40s untuk kecepatan (lebih besar = lebih lambat) */
+    /* Gunakan animation: scroll agar sesuai dengan keyframes di bawah */
+    animation: scroll 60s linear infinite; 
+    will-change: transform;
 }
 
-/* Berhenti saat kursor di atasnya */
+/* Berhenti saat kursor di atas container */
 .marquee-container:hover .marquee-content {
     animation-play-state: paused;
 }
 
+/* Keyframes untuk scroll halus 50% (karena data kita duplikat) */
 @keyframes scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* Style Kartu */
+/* Style Kartu yang sudah Anda buat (Sempurna) */
 .testimonial-card {
-    width: 380px; /* Ukuran pas untuk dibaca */
+    width: 380px;
     flex-shrink: 0;
     background: #ffffff;
     border-radius: 1.5rem;
-    padding: 1rem;
+    padding: 2rem; /* Saya tambah sedikit padding agar lebih lega */
     border: 1px solid #e5e7eb;
     display: flex;
     flex-direction: column;
@@ -123,27 +128,25 @@ html {
 
 .testimonial-card:hover {
     border-color: #3b82f6;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1);
+    transform: translateY(-5px);
 }
 
-/* Mengatasi isi RichEditor yang terlalu panjang */
+/* Limit teks testimoni agar rapi */
 .testimonial-text {
     display: -webkit-box;
-    line-clamp: 4;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     font-style: italic;
+    color: #4b5563; /* slate-600 */
 }
 
+/* Animasi tambahan yang Anda punya */
+.animate-float { animation: float 4s ease-in-out infinite; }
 @keyframes float {
-    0% { transform: translateY(0px); }
+    0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
-}
-
-.animate-float {
-    animation: float 4s ease-in-out infinite;
 }
 
 /* Membuat efek card muncul dari bawah saat pertama kali scroll */

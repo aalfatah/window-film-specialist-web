@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', $settings['site_name'] ?? 'Fatih Jaya Film')</title>
+
+    <meta name="description" content="{{ $settings['site_description'] ?? 'Deskripsi default' }}">
+
     <link rel="icon" type="image/png" href="{{ asset('images/logo.webp') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
-    {{-- @stack('styles') --}}
+    @stack('styles')
 </head>
 <body class="bg-gray-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
@@ -19,7 +25,7 @@
          :class="scrolled ? 'bg-white/100 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'"
          class="fixed w-full top-0 z-20 transition-all duration-300">
         <div class="container mx-auto px-6 py-0 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3">
+            <a href="{{route('home')}}" class="flex items-center gap-3">
                 <img src="{{ asset('images/logo-brandname.webp') }}" loading="lazy" 
                     alt="Fatih Jaya Film" 
                     class="h-10 w-auto">
@@ -33,7 +39,7 @@
                         <svg class="w-4 h-4 transition-transform" :class="serviceMenuOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div x-show="serviceMenuOpen" x-transition class="absolute left-0 mt-0 w-56 bg-white shadow-2xl rounded-2xl border border-gray-100 py-3 overflow-hidden">
-                        @foreach(\App\Models\Service::where('is_featured', true)->get() as $navService)
+                        @foreach($navServices as $navService)
                             <a href="{{ route('service.show', $navService->slug) }}" class="block px-5 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-brand-primary transition">
                                 {{ $navService->name }}
                             </a>
@@ -55,7 +61,7 @@
                         x-transition:leave-end="opacity-0 translate-y-2"
                         class="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-3 overflow-hidden z-50">
                         
-                        @foreach(\App\Models\Partner::all() as $navPartner)
+                        @foreach($navPartners as $navPartner)
                             <a href="{{ route('brand.detail', ['id' => $navPartner->id, 'slug' => Str::slug($navPartner->name)]) }}" 
                             class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-green-50 hover:text-brand-primary transition border-b border-gray-50 last:border-0">
                                 @if($navPartner->logo_path)
@@ -66,7 +72,6 @@
                         @endforeach
                     </div>
                 </div>
-                {{-- <a href="#layanan" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.services') }}</a> --}}
                 <a href="{{ route('portfolio.index') }}" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.portfolio') }}</a>
                 <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
                     <a href="{{ route('lang.switch', 'id') }}" 
@@ -110,7 +115,7 @@
                         <svg class="w-4 h-4 transition-transform" :class="mobServiceOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                     <div x-show="mobServiceOpen" class="bg-slate-50 rounded-lg mt-1 px-4 py-2 space-y-2">
-                        @foreach(\App\Models\Service::where('is_featured', true)->get() as $navService)
+                        @foreach($navServices as $navService)
                             <a href="{{ route('service.show', $navService->slug) }}" class="block py-2 text-sm text-gray-600">
                                 {{ $navService->name }}
                             </a>
@@ -124,7 +129,7 @@
                         <svg class="w-4 h-4 transition-transform" :class="mobBrandOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                     <div x-show="mobBrandOpen" class="bg-slate-50 rounded-lg mt-1 px-4 py-2 space-y-2">
-                        @foreach(\App\Models\Partner::all() as $navPartner)
+                        @foreach($navPartners as $navPartner)
                             <a href="{{ route('brand.detail', ['id' => $navPartner->id, 'slug' => Str::slug($navPartner->name)]) }}" class="flex items-center gap-2 py-2 text-sm text-gray-600">
                                 <img src="{{ asset('storage/' . $navPartner->logo_path) }}" class="w-5 h-5 object-contain opacity-70" alt="">
                                 {{ $navPartner->name }}
@@ -158,7 +163,35 @@
         </div>
     </nav>
 
-    <main class="flex-grow pt-20"> @yield('content')
+    <main class="flex-grow pt-20">
+        {{-- BREADCRUMBS --}}
+        {{-- @if(!request()->is('/') && !request()->is('home'))
+        <nav class="absolute w-full z-10 py-4">
+            <div class="container mx-auto px-6">
+                <ol class="flex items-center space-x-2 text-sm">
+                    <li>
+                        <a href="{{route('home')}}" class="hover:text-white/80 transition flex items-center gap-1 drop-shadow-md">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Home
+                        </a>
+                    </li>
+                    
+                    @php $segments = ''; @endphp
+                    @foreach(request()->segments() as $segment)
+                        @php $segments .= '/'.$segment; @endphp
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
+                            <a href="{{ $segments }}" class="hover:text-white/80 transition capitalize drop-shadow-md">
+                                {{ str_replace('-', ' ', $segment) }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ol>
+            </div>
+        </nav>
+        @endif --}}
+        
+        @yield('content')
     </main>
 
     <footer id="kontak" class="bg-brand-dark text-white pt-16 pb-6">
@@ -167,7 +200,6 @@
                 
                 <div class="md:col-span-1">
                     <div class="flex items-center gap-2 mb-6">
-                        {{-- <div class="w-8 h-8 bg-brand-primary rounded flex items-center justify-center font-bold text-brand-dark">F</div> --}}
                         <span class="font-bold text-xl">CV Fatih Jaya<span class="text-brand-primary"> Film</span></span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
@@ -178,9 +210,9 @@
                 <div>
                     <h4 class="font-bold text-lg mb-6">{{ __('message.menuquick_footer') }}</h4>
                     <ul class="space-y-3 text-gray-400 text-sm">
-                        <li><a href="#tentang" class="hover:text-brand-primary transition">{{ __('message.about') }}</a></li>
+                        <li><a href="{{route('about.me')}}" class="hover:text-brand-primary transition">{{ __('message.about') }}</a></li>
                         <li><a href="#layanan" class="hover:text-brand-primary transition">{{ __('message.services') }}</a></li>
-                        <li><a href="#portfolio" class="hover:text-brand-primary transition">{{ __('message.portfolio') }}</a></li>
+                        <li><a href="{{ route('portfolio.index') }}" class="hover:text-brand-primary transition">{{ __('message.portfolio') }}</a></li>
                     </ul>
                 </div>
 
@@ -205,7 +237,8 @@
                 </div>
 
                 <div class="h-48 rounded-xl overflow-hidden bg-gray-800">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d63455.019040037456!2d106.72131228382455!3d-6.2717930213563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sKp.%20Pondok%20Jati%20Selatan%20No.138%20RT.%2003%20RW%2013!5e0!3m2!1sid!2sid!4v1770889556430!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d63455.019040037456!2d106.72131228382455!3d-6.2717930213563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sKp.%20Pondok%20Jati%20Selatan%20No.138%20RT.%2003%20RW%2013!5e0!3m2!1sid!2sid!4v1770889556430!5m2!1sid!2sid" class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
