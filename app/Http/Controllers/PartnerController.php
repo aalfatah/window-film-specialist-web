@@ -13,7 +13,10 @@ class PartnerController extends Controller
             $query->where('is_active', true);
         }])->findOrFail($id);
 
-        $allPartners = Partner::where('id', '!=', $id)->get();
+        $allPartners = Partner::where('id', '!=', $id)
+                            ->where('is_active', true)
+                            ->select('id', 'name', 'logo_path')
+                            ->get();
 
         return  view('partner.show', compact('partner', 'allPartners'));
     }

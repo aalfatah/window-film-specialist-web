@@ -65,10 +65,9 @@
                                             {{ __('message.vlt')}}
                                         </div>
                                     </td>
-                                    @foreach($partner->products as $product)
-                                        @php $maxVlt = collect($product->specifications ?? [])->max('vlt'); @endphp
+                                    @foreach($partner->products as $product)                        
                                         <td class="px-6 py-6 text-center text-xl font-black text-white">
-                                            {{ $maxVlt ? $maxVlt.'%' : '-' }}
+                                            {{ $product->max_vlt ? $product->max_vlt . '%' : '-' }}
                                         </td>
                                     @endforeach
                                 </tr>
@@ -84,9 +83,8 @@
                                         </div>
                                     </td>
                                     @foreach($partner->products as $product)
-                                        @php $maxIrr = collect($product->specifications ?? [])->max('irr'); @endphp
                                         <td class="px-6 py-6 text-center text-xl font-black text-white">
-                                            {{ $maxIrr ? $maxIrr.'%' : '-' }}
+                                            {{ $product->max_irr ? $product->max_irr . '%' : '-' }}
                                         </td>
                                     @endforeach
                                 </tr>
@@ -102,9 +100,8 @@
                                         </div>
                                     </td>
                                     @foreach($partner->products as $product)
-                                        @php $maxTser = collect($product->specifications ?? [])->max('tser'); @endphp
                                         <td class="px-6 py-6 text-center text-2xl font-black text-white">
-                                            {{ $maxTser ? $maxTser.'%' : '-' }}
+                                            {{ $product->max_tser ? $product->max_tser . '%' : '-' }}
                                         </td>
                                     @endforeach
                                 </tr>
@@ -287,7 +284,7 @@
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold text-slate-900 mb-6">{{ __('message.brand_other_brands')}}</h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        @foreach(\App\Models\Partner::where('id', '!=', $partner->id)->get() as $otherPartner)
+                        @foreach($allPartners as $otherPartner)
                         <a href="{{ route('brand.detail', ['id' => $otherPartner->id, 'slug' => \Illuminate\Support\Str::slug($otherPartner->name)]) }}" class="group p-4 bg-white border border-gray-200 rounded-2xl hover:border-brand-primary hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center text-center">
                             <img src="{{ asset('storage/'.$otherPartner->logo_path) }}" alt="{{ $otherPartner->name }}" class="h-10 w-auto grayscale group-hover:grayscale-0 transition mb-3">
                             <span class="text-xs font-bold text-gray-500 group-hover:text-brand-primary uppercase tracking-tighter">{{ $otherPartner->name }}</span>
