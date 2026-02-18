@@ -2,6 +2,10 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\ProductChart;
+use App\Filament\Widgets\QuickActions;
+use App\Filament\Widgets\ServiceChart;
+use App\Filament\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -10,6 +14,7 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\MaxWidth;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -18,7 +23,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\App;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use App\Filament\Widgets\StatsOverview;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,8 +35,8 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             // 1. Ganti Judul & Logo
             ->brandName('Fatih Jaya Admin')
-            ->brandLogo(asset('images/logo-brandname.png'))
-            ->brandLogoHeight('5rem')
+            ->brandLogo(asset('images/logo-brandname.webp'))
+            ->brandLogoHeight('3rem')
             ->favicon(asset('favicon.ico'))
 
             ->profile()
@@ -52,10 +56,14 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->maxContentWidth(MaxWidth::Full)
             ->widgets([
-                Widgets\AccountWidget::class,
-                // Widgets\FilamentInfoWidget::class
+                // Widgets\AccountWidget::class,
+                // Widgets\FilamentInfoWidget::class,
                 StatsOverview::class,
+                QuickActions::class,
+                ProductChart::class,
+                ServiceChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -23,9 +23,11 @@ use Illuminate\Support\Str;
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Manajemen Konten';
-    protected static ?int $navigationSort = 4;
+    
+    protected static ?string $navigationIcon = 'heroicon-m-check-badge';
+    protected static ?string $navigationGroup = 'Brand & Product';
+    // protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -40,9 +42,21 @@ class ProductResource extends Resource
                         ->required()
                         ->live(onBlur: true)
                         ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
-                    TextInput::make('slug')->required(),
-                    FileUpload::make('image_path')->image()->directory('products'),
-                    RichEditor::make('description')->columnSpanFull(),
+                    TextInput::make('slug')
+                        ->required()
+                        ->unique(Product::class, 'slug', ignoreRecord: true)
+                        ->dehydrated()
+                        ->helperText('URL otomatis mengikuti nama produk'),
+                    FileUpload::make('image_path')
+                        ->image()
+                        ->directory('products')
+                        ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                        ->previewable(true)
+                        ->maxSize(2048)
+                        ->openable()
+                        ->label('Foto Produk'),
+                    RichEditor::make('description')
+                        ->columnSpanFull(),
                 ])->columns(2),
 
                 Section::make('Spesifikasi Teknis (Otomatis Jadi Tabel)')

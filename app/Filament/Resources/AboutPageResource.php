@@ -22,8 +22,9 @@ use Filament\Forms\Components\Textarea;
 class AboutPageResource extends Resource
 {
     protected static ?string $model = AboutPage::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?string $navigationLabel = 'About';
+    protected static ?string $navigationGroup = 'Manajemen Konten';
 
     public static function form(Form $form): Form
     {

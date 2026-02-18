@@ -247,7 +247,6 @@
             </div>
         </div>
     </footer>
-
     
     <a href="{{ route('whatsapp.redirect') }}" 
        target="_blank"
