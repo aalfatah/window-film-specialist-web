@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Setting extends Model
 {
@@ -10,4 +11,10 @@ class Setting extends Model
         'key',
         'value',
     ];
+
+    protected static function booted()
+    {
+        static::saved(fn () => Cache::forget('site_settings'));
+        static::deleted(fn () => Cache::forget('site_settings'));
+    }
 }

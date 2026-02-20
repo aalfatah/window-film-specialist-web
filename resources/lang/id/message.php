@@ -28,6 +28,8 @@ return [
     'advantage_grid2' => 'Kabin lebih dingin, hemat AC & BBM.',
     'advantage_grid3' => 'Jaminan produk original & anti gelembung.',
     'advantage_grid4' => 'Mengurangi silau lampu lawan arah saat malam.',
+    'features_title' => 'Fitur',
+    'features_subtitle' => 'Rasakan Layanan Terbaik<br>Bersama kami',
     'services_title' => 'Layanan Kami',
     'services_subtitle' => 'Solusi Kaca Film Terlengkap',
     'service_price_from' => 'Mulai dari',

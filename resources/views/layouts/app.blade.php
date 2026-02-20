@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
@@ -20,72 +19,78 @@
 </head>
 <body class="bg-gray-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
-    <nav x-data="{ open: false, scrolled: false, serviceMenuOpen: false }" 
-         @scroll.window="scrolled = (window.pageYOffset > 20)"
-         :class="scrolled ? 'bg-white/100 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'"
-         class="fixed w-full top-0 z-20 transition-all duration-300">
+    <nav x-data="{ open: false, scrolled: false }" 
+     @scroll.window="scrolled = (window.pageYOffset > 20)"
+     :class="scrolled ? 'bg-white/100 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'"
+     class="fixed w-full top-0 z-20 transition-all duration-300">
         <div class="container mx-auto px-6 py-0 flex justify-between items-center">
             <a href="{{route('home')}}" class="flex items-center gap-3">
-                <img src="{{ asset('images/logo-brandname.webp') }}" loading="lazy" 
-                    alt="Fatih Jaya Film" 
-                    class="h-10 w-auto">
+                <img src="{{ asset('images/logo-brandname.webp') }}" loading="lazy" alt="Fatih Jaya Film" class="h-10 w-auto">
             </a>
 
             <div class="hidden md:flex items-center gap-8">
                 <a href="{{route('about.me')}}" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.about') }}</a>
-                <div class="relative" @mouseenter="serviceMenuOpen = true" @mouseleave="serviceMenuOpen = false">
-                    <button class="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-primary transition tracking-wider">
+                
+                <div class="relative group" x-data="{ serviceOpen: false }" @mouseenter="serviceOpen = true" @mouseleave="serviceOpen = false">
+                    <button class="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-primary transition tracking-wider py-2">
                         {{ __('message.services') }}
-                        <svg class="w-4 h-4 transition-transform" :class="serviceMenuOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-4 h-4 transition-transform duration-300" :class="serviceOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div x-show="serviceMenuOpen" x-transition class="absolute left-0 mt-0 w-56 bg-white shadow-2xl rounded-2xl border border-gray-100 py-3 overflow-hidden">
-                        @foreach($navServices as $navService)
-                            <a href="{{ route('service.show', $navService->slug) }}" class="block px-5 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-brand-primary transition">
-                                {{ $navService->name }}
-                            </a>
+                    
+                    <div x-show="serviceOpen" 
+                        x-transition 
+                        class="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-3 z-50">
+                        
+                        @foreach($navCategories as $category)
+                            <div class="relative group/sub" x-data="{ subOpen: false }" @mouseenter="subOpen = true" @mouseleave="subOpen = false">
+                                <div class="flex items-center justify-between px-5 py-3 text-sm font-medium text-slate-700 hover:bg-green-50 hover:text-brand-primary cursor-pointer transition">
+                                    <span>{{ $category->name }}</span>
+                                    <svg class="w-4 h-4 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+
+                                <div x-show="subOpen" 
+                                    x-transition:enter="transition ease-out duration-200"
+                                    x-transition:enter-start="opacity-0 translate-x-2"
+                                    x-transition:enter-end="opacity-100 translate-x-0"
+                                    class="absolute left-full top-[-12px] w-64 bg-white shadow-2xl rounded-2xl border border-gray-100 py-3 ml-1 overflow-hidden">
+                                    
+                                    @foreach($category->services as $service)
+                                        <a href="{{ route('service.show', $service->slug) }}" class="block px-5 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-brand-primary transition">
+                                            {{ $service->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
+
                 <div class="relative group" x-data="{ brandOpen: false }" @mouseenter="brandOpen = true" @mouseleave="brandOpen = false">
                     <button class="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-primary transition tracking-wider py-2">
                         {{ __('message.brands') }}
                         <svg class="w-4 h-4 transition-transform duration-300" :class="brandOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    
-                    <div x-show="brandOpen" 
-                        x-transition:enter="transition ease-out duration-200"
-                        x-transition:enter-start="opacity-0 translate-y-2"
-                        x-transition:enter-end="opacity-100 translate-y-0"
-                        x-transition:leave="transition ease-in duration-150"
-                        x-transition:leave-start="opacity-100 translate-y-0"
-                        x-transition:leave-end="opacity-0 translate-y-2"
-                        class="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-3 overflow-hidden z-50">
-                        
+                    <div x-show="brandOpen" x-transition class="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-3 overflow-hidden z-50">
                         @foreach($navPartners as $navPartner)
-                            <a href="{{ route('brand.detail', ['id' => $navPartner->id, 'slug' => Str::slug($navPartner->name)]) }}" 
+                            <a href="{{ route('brand.detail', ['id' => $navPartner->id, 'slug' => \Illuminate\Support\Str::slug($navPartner->name)]) }}" 
                             class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:bg-green-50 hover:text-brand-primary transition border-b border-gray-50 last:border-0">
                                 @if($navPartner->logo_path)
-                                    <img src="{{ asset('storage/' . $navPartner->logo_path) }}" class="w-8 h-8 object-contain" alt="Logo">
+                                    <img src="{{ asset('storage/' . $navPartner->logo_path) }}" class="w-8 h-8 object-contain" alt="">
                                 @endif
                                 <span class="font-medium">{{ $navPartner->name }}</span>
                             </a>
                         @endforeach
                     </div>
                 </div>
+
                 <a href="{{ route('portfolio.index') }}" class="text-sm font-semibold text-gray-600 hover:text-brand-primary transition">{{ __('message.portfolio') }}</a>
+                
                 <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
-                    <a href="{{ route('lang.switch', 'id') }}" 
-                       class="px-3 py-1 text-[10px] font-bold rounded-full transition {{ app()->getLocale() == 'id' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400 hover:text-slate-600' }}">
-                        ID
-                    </a>
-                    <a href="{{ route('lang.switch', 'en') }}" 
-                       class="px-3 py-1 text-[10px] font-bold rounded-full transition {{ app()->getLocale() == 'en' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400 hover:text-slate-600' }}">
-                        EN
-                    </a>
+                    <a href="{{ route('lang.switch', 'id') }}" class="px-3 py-1 text-[10px] font-bold rounded-full {{ app()->getLocale() == 'id' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400' }}">ID</a>
+                    <a href="{{ route('lang.switch', 'en') }}" class="px-3 py-1 text-[10px] font-bold rounded-full {{ app()->getLocale() == 'en' ? 'bg-white shadow-sm text-brand-primary' : 'text-gray-400' }}">EN</a>
                 </div>
                 
-                <a href="{{ route('whatsapp.redirect') }}" 
-                class="bg-brand-dark text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-brand-primary transition shadow-lg shadow-brand-primary/20">
+                <a href="{{ route('whatsapp.redirect') }}" class="bg-brand-dark text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-brand-primary transition shadow-lg shadow-brand-primary/20">
                     {{ __('message.consultation') }}
                 </a>
             </div>
@@ -96,29 +101,30 @@
             </button>
         </div>
 
-        <div x-show="open" 
-            x-cloak 
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 -translate-y-4"
-            x-transition:enter-end="opacity-100 translate-y-0"
-            @click.away="open = false" 
-            class="md:hidden bg-white border-t border-gray-100 shadow-2xl absolute w-full left-0">
-            
+        <div x-show="open" x-cloak x-transition @click.away="open = false" class="md:hidden bg-white border-t border-gray-100 shadow-2xl absolute w-full left-0 z-50">
             <div class="flex flex-col p-6 space-y-2">
-                <a href="{{ route('about.me') }}" class="py-2 text-gray-700 font-bold hover:text-brand-primary transition border-b border-gray-50">
-                    {{ __('message.about') }}
-                </a>
+                <a href="{{ route('about.me') }}" class="py-2 text-gray-700 font-bold border-b border-gray-50">{{ __('message.about') }}</a>
 
                 <div x-data="{ mobServiceOpen: false }">
                     <button @click="mobServiceOpen = !mobServiceOpen" class="w-full flex justify-between items-center py-2 text-gray-700 font-bold border-b border-gray-50">
                         <span>{{ __('message.services') }}</span>
                         <svg class="w-4 h-4 transition-transform" :class="mobServiceOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
-                    <div x-show="mobServiceOpen" class="bg-slate-50 rounded-lg mt-1 px-4 py-2 space-y-2">
-                        @foreach($navServices as $navService)
-                            <a href="{{ route('service.show', $navService->slug) }}" class="block py-2 text-sm text-gray-600">
-                                {{ $navService->name }}
-                            </a>
+                    <div x-show="mobServiceOpen" class="mt-2 space-y-2 pl-4">
+                        @foreach($navCategories as $category)
+                            <div x-data="{ subMobOpen: false }">
+                                <button @click="subMobOpen = !subMobOpen" class="w-full flex justify-between items-center py-2 text-sm text-gray-600 font-semibold italic">
+                                    <span>{{ $category->name }}</span>
+                                    <svg class="w-3 h-3 transition-transform" :class="subMobOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </button>
+                                <div x-show="subMobOpen" class="bg-slate-50 rounded-lg ml-2 px-4 py-1 space-y-1 border-l-2 border-brand-primary/20">
+                                    @foreach($category->services as $service)
+                                        <a href="{{ route('service.show', $service->slug) }}" class="block py-2 text-sm text-gray-500">
+                                            {{ $service->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -131,17 +137,17 @@
                     <div x-show="mobBrandOpen" class="bg-slate-50 rounded-lg mt-1 px-4 py-2 space-y-2">
                         @foreach($navPartners as $navPartner)
                             <a href="{{ route('brand.detail', ['id' => $navPartner->id, 'slug' => Str::slug($navPartner->name)]) }}" class="flex items-center gap-2 py-2 text-sm text-gray-600">
-                                <img src="{{ asset('storage/' . $navPartner->logo_path) }}" class="w-5 h-5 object-contain opacity-70" alt="">
+                                @if($navPartner->logo_path)
+                                    <img src="{{ asset('storage/' . $navPartner->logo_path) }}" class="w-5 h-5 object-contain opacity-70" alt="">
+                                @endif
                                 {{ $navPartner->name }}
                             </a>
                         @endforeach
                     </div>
                 </div>
 
-                <a href="{{ route('portfolio.index') }}" class="py-2 text-gray-700 font-bold hover:text-brand-primary transition border-b border-gray-50">
-                    {{ __('message.portfolio') }}
-                </a>
-
+                <a href="{{ route('portfolio.index') }}" class="py-2 text-gray-700 font-bold border-b border-gray-50">{{ __('message.portfolio') }}</a>
+                
                 <div class="pt-4 space-y-4">
                     <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200 w-max">
                         <a href="{{ route('lang.switch', 'id') }}" 

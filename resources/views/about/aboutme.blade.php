@@ -77,20 +77,32 @@
                                 class="rounded-xl border-4 border-blue-800 shadow-2xl h-32 md:h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" 
                                 alt="Portfolio 1">
                             <div class="absolute inset-0 rounded-xl bg-blue-500/10 group-hover:bg-transparent transition-colors"></div>
+
+                            <div class="absolute top-5 left-5 z-10">
+                                <span class="bg-blue-800 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-lg">
+                                    {{ Str::limit(strip_tags($randomPortfolios[0]->service->name ?? 'Kaca Film'), 20) }}
+                                </span>
+                            </div>
                         </div>
                         
                         <div class="relative group">
-                            <img src="{{ isset($randomPortfolios[1]) ? asset('storage/' . $randomPortfolios[1]->image_path) : asset('images/about.webp') }}" 
+                            <img src="{{ isset($randomPortfolios[1]) ? asset('storage/' . $randomPortfolios[1]->image_path) : 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop' }}" 
                                 class="rounded-xl border-4 border-blue-800 shadow-2xl h-32 md:h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" 
                                 alt="Portfolio 2">
                             <div class="absolute inset-0 rounded-xl bg-blue-500/10 group-hover:bg-transparent transition-colors"></div>
+
+                            <div class="absolute top-5 left-5 z-10">
+                                <span class="bg-blue-800 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-lg">
+                                    {{ Str::limit(strip_tags($randomPortfolios[1]->service->name ?? 'Kaca Film'), 20) }}
+                                </span>
+                            </div>
                         </div>
                     </div>
 
                     {{-- Main Car Image (CMS) --}}
                     <div class="relative z-5 rounded-[0.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-                        <img src="{{ $about->main_image ? asset('storage/' . $about->main_image) : 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop' }}" 
-                            class="w-full h-auto object-cover" 
+                        <img src="{{ $about->main_image ? asset('storage/' . $about->main_image) : asset('images/about-me.webp') }}" 
+                            class="w-full h-auto object-cover"
                             alt="Main Car">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a161d]/60 to-transparent"></div>
                     </div>

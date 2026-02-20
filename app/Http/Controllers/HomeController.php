@@ -15,23 +15,24 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // $services = Service::where('is_featured', true)->get();
-        $allServices = Service::where('is_featured', true)->latest()->get();
-        $count = $allServices->count();
+        $services = Service::with('category')->where('is_featured', true)->latest()->get();
+    
+        // Ambil kategori yang memiliki service untuk filter
+        $categories = Category::whereHas('services', function($q) {
+            $q->where('is_featured', true);
+        })->get();
 
-        if ($count >= 6) {
-            $services = $allServices->take(6);
-        } elseif ($count >= 3) {
-            $services = $allServices->take(3);
-        } else {
-            $services = $allServices;
-        }
         $settings = Setting::pluck('value', 'key')->toArray();
         $portfolios = Portfolio::with('service')
             ->where('is_active', true)
             ->latest()
             ->take(6)
             ->get();
+
+        $seed = floor(date('H') / 6); 
+        // Ambil 1 gambar portfolio secara acak berdasarkan seed jam
+        $featuredIndex = $seed % ($portfolios->count() ?: 1); 
+        $portfolioImage = $portfolios->isNotEmpty() ? $portfolios[$featuredIndex] : null;
 
         $experience = date('Y') - 2021;
 
@@ -49,8 +50,15 @@ class HomeController extends Controller
         }
 
         $partners = Partner::where('is_active', true)->get();
+    
+        $randomPartners = Partner::where('is_active', true)
+            ->inRandomOrder($seed)
+            ->take(3)
+            ->get();
 
-        return view('home', compact('services', 'portfolios', 'settings', 'partners', 'experience', 'testimonials', 'displayItems'));
+        $about  = AboutPage::first();
+
+        return view('home', compact('services', 'categories', 'portfolios', 'settings', 'partners', 'experience', 'testimonials', 'displayItems', 'about', 'randomPartners', 'portfolioImage'));
     }
 
     public function about()

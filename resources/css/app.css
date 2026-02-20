@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 html {
         scroll-behavior: smooth;
     }
@@ -159,4 +163,16 @@ html {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+.active-filter {
+    @apply bg-orange-500 border-orange-500 text-white shadow-md;
+}
+
+.service-item.hidden {
+    display: none !important;
+}
+
+.swiper-pagination-bullet-active {
+    @apply bg-orange-500 !important;
 }

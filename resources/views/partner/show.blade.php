@@ -15,9 +15,13 @@
             <div class="container mx-auto px-6 relative z-10">
                 <div class="flex flex-col items-center text-center">
                     @if($partner->logo_path)
-                    <div class="bg-white p-6 rounded-3xl shadow-2xl mb-8 transform -rotate-2 hover:rotate-0 transition duration-500">
-                        <img src="{{ asset('storage/'.$partner->logo_path) }}" alt="{{ $partner->name }}" class="h-20 w-auto object-contain">
-                    </div>
+                        <div class="bg-white p-6 rounded-3xl shadow-2xl mb-8 transform -rotate-2 hover:rotate-0 transition duration-500">
+                            {{-- Gunakan operator ?? untuk fallback yang lebih bersih --}}
+                            <img src="{{ $partner->logo_path ? asset('storage/'.$partner->logo_path) : asset('images/logo.webp') }}" 
+                                alt="{{ $partner->name }}" 
+                                class="h-20 w-auto object-contain"
+                                onerror="this.src='{{ asset('images/logo.webp') }}'"> {{-- Pengaman ekstra jika file storage hilang fisik --}}
+                        </div>
                     @endif
                     
                     <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6">
@@ -232,6 +236,17 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            @if($product->image_path)
+                                <h2 class="text-3xl font-semibold text-slate-800">
+                                    Window Film Simulator
+                                </h2>
+                                <div class="mb-6 w-full rounded-2xl overflow-hidden border border-gray-100 shadow-sm bg-gray-50">
+                                    <img src="{{ asset('storage/' . $product->image_path) }}" 
+                                        alt="Gambar Produk {{ $product->name }}"
+                                        class="w-full h-auto object-contain hover:scale-105 transition-transform duration-500">
+                                </div>
+                            @endif
 
                             <div class="bg-slate-50 p-6 rounded-2xl">
                                 <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
