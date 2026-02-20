@@ -52,9 +52,10 @@
                         @foreach ($partners as $partner)
                             <div class="flex items-center justify-center px-10">
                                 <div class="w-32 h-16 flex items-center justify-center">
-                                    <img src="{{ asset('storage/' . $partner->logo_path) }}" 
-                                        alt="{{ $partner->name }}" 
-                                        class="max-h-12 w-auto object-contain filter grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+                                    <img src="{{ $partner->logo_path ? asset('storage/' . $partner->logo_path) : asset('images/logo.webp') }}" 
+                                    alt="{{ $partner->name }}" 
+                                    class="max-h-12 w-auto object-contain filter grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+                                    onerror="this.src='{{ asset('images/logo.webp') }}'">
                                 </div>
                                 <div class="w-1.5 h-1.5 bg-gray-200 rounded-full ml-10"></div>
                             </div>
@@ -70,7 +71,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="relative">
                     <div class="absolute -top-4 -left-4 w-24 h-24 bg-brand-primary/20 rounded-full z-0"></div>
-                    <img src="{{asset('images/about.webp')}}" loading="lazy" 
+                    <img src="{{ asset('images/about-me.webp') }}" loading="lazy" 
                          alt="About CV Fatih Jaya" 
                          class="relative z-10 rounded-2xl shadow-2xl">
                     <div class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white p-6 rounded-xl shadow-xl z-10 border-l-4 border-brand-primary">
@@ -183,45 +184,174 @@
         </div>
     </section>
 
-    <section id="layanan" class="py-10 bg-gray-50">
+    <section id="feature" class="py-10 bg-white overflow-hidden">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-14">
-                <span class="text-brand-primary font-bold uppercase tracking-wider text-sm">{{ __('message.services_title') }}</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-slate-800">{{ __('message.services_subtitle') }}</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @forelse($services as $service)
-                <div class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                    
-                    <div class="w-16 h-16 bg-brand-surface rounded-2xl flex items-center justify-center text-brand-primary mb-8 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                
+                <div class="w-full md:w-1/2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="w-10 h-[2px] bg-brand-primary"></span>
+                        <span class="text-brand-primary font-bold uppercase tracking-widest text-sm">{{ __('message.features_title')}}</span>
                     </div>
-                    
-                    <h3 class="text-2xl font-bold text-slate-900 mb-3">{{ $service->name }}</h3>
-                    <p class="text-gray-500 mb-6 line-clamp-2">
-                        {{ Str::limit(strip_tags($service->description), 100) }}
-                    </p>
-                    
-                    <div class="flex justify-between items-center pt-6 border-t border-gray-100">
-                        <a href="{{ route('service.show', $service->slug) }}" class="inline-flex items-center justify-between w-full text-slate-800 font-semibold group hover:text-brand-primary transition">
-                            <span class="text-sm font-bold text-slate-400">{{ __('message.service_price_from') }} 
-                                @if($service->price >= 1000000)
-                                    Rp {{ number_format($service->price / 1000000, 1, ',', '.') }}jt
-                                @else
-                                    Rp {{ number_format($service->price / 1000, 0) }}k
-                                @endif
-                            </span>
-                            <span class="text-brand-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                                Detail <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </span>
-                        </a>
+                    <h2 class="text-4xl font-extrabold text-slate-900 mb-8 leading-tight">
+                        {!! __('message.features_subtitle')!!}
+                    </h2>
+
+                    <div class="space-y-8">
+                        @if($about && $about->values)
+                            @foreach($about->values as $item)
+                            <div class="flex gap-3">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center text-brand-primary">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900">{{ $item['title'] ?? 'Judul' }}</h3>
+                                    <p class="text-slate-600 leading-relaxed text-sm">
+                                        {{ $item['description'] ?? 'Deskripsi layanan terbaik kami untuk Anda.' }}
+                                    </p>
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
-                @empty
-                <div class="col-span-3 text-center text-gray-400">Belum ada layanan yang diinput.</div>
-                @endforelse
+
+                <div class="w-full md:w-1/2 relative">
+                    <div class="absolute -top-12 -left-12 w-40 h-40 bg-orange-200/40 -z-10 rounded-3xl animate-pulse"></div>
+                    <div class="absolute top-20 -right-10 w-20 h-20 bg-brand-primary/10 -z-10 rounded-full animate-bounce" style="animation-duration: 3s;"></div>
+                    
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl z-10 group border-8 border-white">
+    
+                        <img src="{{ ($about && $about->main_image) ? asset('storage/' . $about->main_image) : ($portfolioImage ? asset('storage/' . $portfolioImage->image_path) : asset('images/about.webp')) }}" 
+                            alt="{{ $about->heading ?? 'Fatih Jaya Film' }}" 
+                            class="w-full h-[500px] object-cover transform group-hover:scale-110 transition duration-1000" 
+                            fetchpriority="high">
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                        
+                        @if(!($about && $about->main_image) && $portfolioImage)
+                            <div class="absolute top-5 left-5 z-10">
+                                <span class="bg-brand-primary text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-lg">
+                                    {{ $portfolioImage->service->name ?? 'Kaca Film' }}
+                                </span>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="absolute inset-0 z-10 pointer-events-none">
+                        @foreach($randomPartners as $index => $p)
+                            @php
+                                // Atur posisi berbeda untuk tiap popup
+                                $positions = [
+                                    0 => "top-10 -right-6",   
+                                    1 => "bottom-20 -left-8", 
+                                    2 => "bottom-10 right-10"
+                                ];
+                                $delay = [0 => "0s", 1 => "1s", 2 => "2s"];
+                            @endphp
+                            
+                            <div class="absolute {{ $positions[$index] }} bg-white/90 backdrop-blur-md p-3 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3 animate-float pointer-events-auto"
+                                style="animation-delay: {{ $delay[$index] }}">
+                                <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
+                                    @if($p->logo_path)
+                                        <img src="{{ asset('storage/' . $p->logo_path) }}" class="w-full h-full object-contain p-1" alt="Logo">
+                                    @else
+                                        <span class="text-[10px] font-bold text-gray-400">FJ</span>
+                                    @endif
+                                </div>
+                                <div class="pr-2">
+                                    <p class="text-[10px] text-gray-500 font-semibold uppercase tracking-tighter">Official Partner</p>
+                                    <p class="text-xs font-bold text-slate-800">{{ $p->name }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-brand-primary/10 -z-10 rounded-sm rotate-12"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="layanan" class="py-10 bg-white">
+        <div class="container mx-auto px-6">
+            
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="w-10 h-[2px] bg-brand-primary"></span>
+                        <span class="text-brand-primary font-bold uppercase tracking-widest text-sm">{{ __('message.services_title')}}</span>
+                    </div>
+                    <h2 class="text-4xl font-extrabold text-slate-900">{{ __('message.services_subtitle')}}</h2>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterService('all', this)" class="filter-btn active-filter px-5 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">
+                        Semua
+                    </button>
+                    @foreach($categories as $cat)
+                        <button onclick="filterService('cat-{{ $cat->id }}', this)" class="filter-btn px-5 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">
+                            {{ $cat->name }}
+                        </button>
+                    @endforeach
+                </div>
+
+                <div class="hidden lg:flex gap-3">
+                    <button class="nav-prev w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all shadow-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button class="nav-next w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all shadow-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="swiper service-swiper overflow-visible">
+                <div class="swiper-wrapper">
+                    @foreach($services as $service)
+                    <div class="swiper-slide service-item cat-{{ $service->category_id }}">
+                        <div class="group flex flex-col h-full bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                            <div class="relative h-60 rounded-xl overflow-hidden mb-6">
+                                <img src="{{ $service->image ? asset('storage/' . $service->image) : 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop' }}" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-md text-[10px] font-bold uppercase text-slate-800">
+                                    {{ $service->category->name }}
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-primary transition-colors">
+                                {{ $service->name }}
+                            </h3>
+                            <p class="text-slate-500 text-sm line-clamp-2 mb-2">{{ strip_tags($service->subtitle) }}</p>
+                            
+                            <div class="mt-auto pt-4 border-t flex items-center justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">{{ __('message.service_price_from')}}</span>
+                                    <span class="text-lg font-extrabold text-slate-900">
+                                        @if($service->price >= 1000000)
+                                            Rp {{ number_format($service->price / 1000000, 1, ',', '.') }}jt
+                                        @else
+                                            Rp {{ number_format($service->price / 1000, 0) }}k
+                                        @endif
+                                    </span>
+                                </div>
+                                
+                                <a href="{{ route('service.show', $service->slug) }}" 
+                                class="w-12 h-12 bg-slate-900 group-hover:bg-brand-primary text-white rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:rotate-45 shadow-lg shadow-slate-200">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="swiper-pagination !static mt-10 lg:hidden"></div>
             </div>
         </div>
     </section>

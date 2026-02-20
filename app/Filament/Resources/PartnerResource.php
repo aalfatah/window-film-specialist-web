@@ -41,10 +41,9 @@ class PartnerResource extends Resource
                         '1:1',
                     ])
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->preserveFilenames()
                     ->maxSize(2048)
                     ->required()
-                    ->helperText("Format: PNG Transparan. Ukuran file maksimal 2MB.")
+                    ->helperText("Format: PNG Transparan/webp. Ukuran file maksimal 2MB.")
                     ->label('Logo Brand'),
                 Toggle::make('is_active')
                     ->default(true)
