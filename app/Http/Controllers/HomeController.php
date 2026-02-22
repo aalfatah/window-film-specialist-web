@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutPage;
+use App\Models\Category;
 use App\Models\Partner;
-use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Testimonial;
-use App\Models\Category;
-use App\Models\AboutPage;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $services = Service::with('category')->where('is_featured', true)->latest()->get();
+        $services = Cache::remember('featured_srvice', 60*24, function () {
+            return Service::with('category')
+                ->where('is_featured', true)
+                ->latest()
+                ->get();
+        });
     
         // Ambil kategori yang memiliki service untuk filter
         $categories = Category::whereHas('services', function($q) {
@@ -84,7 +89,9 @@ class HomeController extends Controller
 
     public function showService($slug)
     {
-        $service = Service::where('slug', $slug)->firstOrFail();
+        $service = Service::with(['category', 'packages'])
+            ->where('slug', $slug)
+            ->firstOrFail();
         $settings = Setting::pluck('value', 'key')->toArray();
 
         $relatedPortfolios = Portfolio::where('service_id', $service->id)

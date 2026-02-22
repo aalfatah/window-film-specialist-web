@@ -100,6 +100,8 @@ class ServiceResource extends Resource
                             ->schema([
                                 Repeater::make('packages')
                                     ->relationship('packages')
+                                    ->collapsible()
+                                    ->cloneable()
                                     ->schema([
                                         TextInput::make('name')
                                             ->label('Nama Paket')
