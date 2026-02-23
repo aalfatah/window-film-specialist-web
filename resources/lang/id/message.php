@@ -138,6 +138,7 @@ return [
     'brand_spec_title' => 'Spesifikasi Tiap Series Kaca Film :name',
     'brand_main_advantage' => 'Keunggulan Utama',
     'brand_other_brands' => 'Pilihan Merk Lainnya',
+    'mobile_instruction' => 'Geser untuk melihat spesifikasi lengkap',
     
     // Tips Section
     'brand_tips_title' => 'Tips Memilih Kaca Film Original',

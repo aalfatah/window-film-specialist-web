@@ -55,7 +55,6 @@
                             </div>
                         </div>
                         
-                        {{-- Button tetap hardcode sesuai request --}}
                         <a href="{{ route('whatsapp.redirect') }}" 
                         class="inline-flex items-center justify-center px-8 py-4 bg-blue-800 hover:bg-blue-900 text-white rounded-xl font-bold transition-all duration-300 shadow-lg hover:-translate-y-1">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
@@ -70,19 +69,13 @@
             {{-- Bagian Kanan: Gambar --}}
             <div class="w-full lg:w-1/2 order-1 lg:order-2 px-4 md:px-0">
                 <div class="relative md:pt-24">
-                    {{-- Portfolio Images (Masih pakai logic lama Anda) --}}
-                    <div class="absolute top-0 left-0 right-0 z-10 grid grid-cols-2 gap-4 px-4 md:px-8 transform -translate-y-1/4">
+                    <div class="grid grid-cols-2 gap-4 mb-4 lg:mb-0 lg:absolute lg:top-0 lg:left-0 lg:right-0 lg:z-10 lg:px-8 lg:transform lg:-translate-y-1/4">
                         <div class="relative group">
                             <img src="{{ isset($randomPortfolios[0]) ? asset('storage/' . $randomPortfolios[0]->image_path) : 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop' }}" 
                                 class="rounded-xl border-4 border-blue-800 shadow-2xl h-32 md:h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" 
                                 alt="Portfolio 1">
                             <div class="absolute inset-0 rounded-xl bg-blue-500/10 group-hover:bg-transparent transition-colors"></div>
 
-                            <div class="absolute top-5 left-5 z-10">
-                                <span class="bg-blue-800 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-lg">
-                                    {{ Str::limit(strip_tags($randomPortfolios[0]->service->name ?? 'Kaca Film'), 20) }}
-                                </span>
-                            </div>
                         </div>
                         
                         <div class="relative group">
@@ -91,11 +84,6 @@
                                 alt="Portfolio 2">
                             <div class="absolute inset-0 rounded-xl bg-blue-500/10 group-hover:bg-transparent transition-colors"></div>
 
-                            <div class="absolute top-5 left-5 z-10">
-                                <span class="bg-blue-800 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider shadow-lg">
-                                    {{ Str::limit(strip_tags($randomPortfolios[1]->service->name ?? 'Kaca Film'), 20) }}
-                                </span>
-                            </div>
                         </div>
                     </div>
 

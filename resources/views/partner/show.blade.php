@@ -208,33 +208,38 @@
                                 </div>
                             </div>
 
-                            <div class="overflow-hidden border border-gray-200 rounded-xl shadow-sm">
-                                <table class="w-full text-sm text-left">
+                            <div class="overflow-x-auto overflow-y-hidden border border-gray-200 rounded-xl shadow-sm">
+                                <table class="w-full text-sm text-left min-w-[500px] md:min-w-full">
                                     <thead class="bg-slate-50 text-slate-600 uppercase text-[11px] font-bold">
                                         <tr>
-                                            <th class="px-6 py-4">Series</th>
-                                            <th class="px-6 py-4 text-center">VLT</th>
-                                            <th class="px-6 py-4 text-center">TSER</th>
-                                            <th class="px-6 py-4 text-center">IRR</th>
-                                            <th class="px-6 py-4 text-center">UVR</th>
-                                            <th class="px-6 py-4 text-center bg-brand-primary/5 text-brand-primary">Glar. Red.</th>
+                                            <th class="px-4 py-4 sticky left-0 bg-slate-50 z-10">Series</th>
+                                            <th class="px-4 py-4 text-center">VLT</th>
+                                            <th class="px-4 py-4 text-center">TSER</th>
+                                            <th class="px-4 py-4 text-center">IRR</th>
+                                            <th class="px-4 py-4 text-center">UVR</th>
+                                            <th class="px-4 py-4 text-center bg-brand-primary/5 text-brand-primary">Glar. Red.</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-100">
                                         @foreach($product->specifications as $spec)
                                         <tr class="hover:bg-slate-50 transition">
-                                            <td class="px-6 py-4 font-bold text-slate-800">{{ $spec['type'] }}</td>
-                                            <td class="px-6 py-4 text-center">{{ $spec['vlt'] }}%</td>
-                                            <td class="px-6 py-4 text-center">{{ $spec['tser'] }}%</td>
-                                            <td class="px-6 py-4 text-center">{{ $spec['irr'] }}%</td>
-                                            <td class="px-6 py-4 text-center">{{ $spec['uvr'] }}%</td>
-                                            <td class="px-6 py-4 text-center font-bold text-brand-primary bg-brand-primary/5">
+                                            <td class="px-4 py-4 font-bold text-slate-800 sticky left-0 bg-white group-hover:bg-slate-50">{{ $spec['type'] }}</td>
+                                            <td class="px-4 py-4 text-center">{{ $spec['vlt'] }}%</td>
+                                            <td class="px-4 py-4 text-center">{{ $spec['tser'] }}%</td>
+                                            <td class="px-4 py-4 text-center">{{ $spec['irr'] }}%</td>
+                                            <td class="px-4 py-4 text-center">{{ $spec['uvr'] }}%</td>
+                                            <td class="px-4 py-4 text-center font-bold text-brand-primary bg-brand-primary/5">
                                                 {{ $spec['glare_reduction'] ?? '0' }}%
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div class="flex items-center justify-center gap-2 text-[10px] text-gray-400 md:hidden italic">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                <span>{{ __('message.mobile_instruction')}}</span>
                             </div>
 
                             @if($product->image_path)

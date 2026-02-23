@@ -140,6 +140,7 @@ return [
     'brand_spec_title' => ':name Window Film Series Specifications',
     'brand_main_advantage' => 'Main Advantages',
     'brand_other_brands' => 'Other Brand Choices',
+    'mobile_instruction' => 'Swipe to see full specifications',
 
     // Tips Section
     'brand_tips_title' => 'Tips for Choosing Original Window Film',
