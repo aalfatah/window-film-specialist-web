@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', $settings['site_name'] ?? 'Fatih Jaya Film')</title>
-
-    <meta name="description" content="{{ $settings['site_description'] ?? 'Deskripsi default' }}">
+    <meta name="keywords" content="@yield('keyword', 'film banten, spesialis kaca film mobil banten, pasang kaca film gedung banten, kaca film panggilan banten')">
+    <meta name="description" content="@yield('description', $settings['site_description'] ?? 'Pusat pemasangan kaca film mobil dan gedung terbaik di Banten. Melayani home service, tolak panas maksimal, bergaransi resmi. Hubungi via WhatsApp sekarang!')">
 
     <link rel="icon" type="image/png" href="{{ asset('images/logo.webp') }}">
 
@@ -14,6 +14,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoPartsStore", 
+        "name": "Fatih Jaya Film",
+        "image": "{{ asset('logo.png') }}",
+        "@id": "{{ url('/') }}",
+        "url": "{{ url('/') }}",
+        "telephone": "+6283805060813", 
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Kp. Pondok Jati Selatan No.138 RT. 03 RW 13, Kel. Jurang Mangu Barat, Kec. Pondok Aren",
+            "addressLocality": "Tangerang Selatan",
+            "addressRegion": "Banten",
+            "postalCode": "15223",
+            "addressCountry": "ID"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -6.244832604537739, 
+            "longitude": 106.73229780813901
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+            ],
+            "opens": "08:00",
+            "closes": "17:00"
+        },
+        "sameAs": [
+            "https://www.instagram.com/fatihkacafilm",
+            "https://www.facebook.com/fatihkacafilm"
+        ]
+    }
+    </script>
     
     @stack('styles')
 </head>

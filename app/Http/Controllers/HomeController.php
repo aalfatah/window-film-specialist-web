@@ -135,7 +135,7 @@ class HomeController extends Controller
 
     public function redirect() {
         // $settings = Setting::pluck('value', 'key'); // sudah di AppServiceProvider
-        $phoneNumber = $settings['whatsapp_number'] ?? '628123456789';
+        $phoneNumber = $settings['whatsapp_number'] ?? '6283805060813';
         
         return redirect()->to('https://wa.me/' . $phoneNumber);
     }
