@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('fjfilm-portal')
             ->login()
             // 1. Ganti Judul & Logo
             ->brandName('Fatih Jaya Admin')

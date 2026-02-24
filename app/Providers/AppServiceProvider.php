@@ -8,6 +8,7 @@ use App\Models\Service;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +20,11 @@ class AppServiceProvider extends ServiceProvider
         //     URL::forceScheme('https');
         // }
         // if (str_contains(Config::get('app.url'), 'ngrok-free') || Request::header('X-Forwarded-Proto') === 'https') {
+        //     URL::forceScheme('https');
+        // }
+
+        //production
+        // if (config('app.env') === 'production') {
         //     URL::forceScheme('https');
         // }
 
