@@ -1,0 +1,46 @@
+stages:
+  - deploy
+
+deploy_production:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client rsync
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+
+  script:
+    - echo "🚀 Memulai sinkronisasi file ke Hostinger..."
+    
+    # RSYNC: Mengirim file yang berubah saja.
+    - rsync -atvz --delete-after \
+        -e "ssh -p $SSH_PORT" \
+        --exclude='.git*' \
+        --exclude='node_modules' \
+        --exclude='storage' \
+        --exclude='.env' \
+        --exclude='public/storage' \
+        ./ $SSH_USER@$SSH_IP:$PROJECT_PATH/
+
+    - echo "⚙️  Menjalankan perintah Laravel di server..."
+    # Menjalankan semua perintah dalam satu koneksi SSH agar cepat
+    - |
+      ssh -p $SSH_PORT $SSH_USER@$SSH_IP "
+        cd $PROJECT_PATH &&
+        php artisan down &&
+        composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader &&
+        php artisan migrate --force &&
+        php artisan optimize &&
+        php artisan up
+      "
+    - echo "✅ Deployment Berhasil!"
+
+  environment:
+    name: production
+    url: https://fatihjayafilm.com # Ganti dengan URL asli Anda
+  only:
+    - master
