@@ -14,20 +14,9 @@ deploy_production:
     - chmod 644 ~/.ssh/known_hosts
 
   script:
-    - echo "🚀 Memulai sinkronisasi file ke Hostinger..."
-    
-    # RSYNC: Mengirim file yang berubah saja.
-    - rsync -atvz --delete-after \
-        -e "ssh -p $SSH_PORT" \
-        --exclude='.git*' \
-        --exclude='node_modules' \
-        --exclude='storage' \
-        --exclude='.env' \
-        --exclude='public/storage' \
-        ./ $SSH_USER@$SSH_IP:$PROJECT_PATH/
-
-    - echo "⚙️  Menjalankan perintah Laravel di server..."
-    # Menjalankan semua perintah dalam satu koneksi SSH agar cepat
+    - echo "Memulai sinkronisasi file ke Hostinger..."
+    - rsync -atvz --delete-after -e "ssh -p $SSH_PORT" --exclude='.git*' --exclude='node_modules' --exclude='storage' --exclude='.env' --exclude='public/storage' ./ $SSH_USER@$SSH_IP:$PROJECT_PATH/
+    - echo "Menjalankan perintah Laravel di server..."
     - |
       ssh -p $SSH_PORT $SSH_USER@$SSH_IP "
         cd $PROJECT_PATH &&
@@ -37,10 +26,10 @@ deploy_production:
         php artisan optimize &&
         php artisan up
       "
-    - echo "✅ Deployment Berhasil!"
+    - echo "Deployment Berhasil!"
 
   environment:
     name: production
-    url: https://fatihjayafilm.com # Ganti dengan URL asli Anda
+    url: https://fatihjayafilm.com
   only:
     - master
