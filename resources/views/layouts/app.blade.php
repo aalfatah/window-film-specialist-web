@@ -6,6 +6,9 @@
     <title>@yield('title', $settings['site_name'] ?? 'Fatih Jaya Film')</title>
     <meta name="keywords" content="@yield('keyword', 'film banten, spesialis kaca film mobil banten, pasang kaca film gedung banten, kaca film panggilan banten')">
     <meta name="description" content="@yield('description', $settings['site_description'] ?? 'Pusat pemasangan kaca film mobil dan gedung terbaik di Banten. Melayani home service, tolak panas maksimal, bergaransi resmi. Hubungi via WhatsApp sekarang!')">
+    <meta name="google-site-verification" content="r43NwsLdBblzuuRWtyvtuYVQ7EAppuZj1NsInjc_CGk" />
+    <meta property="og:title" content="Spesialis Kaca Film Mobil & Gedung | Fatih Jaya Film">
+    <meta property="og:description" content="Layanan kaca film mobil dan gedung berkualitas">
 
     <link rel="icon" type="image/png" href="{{ asset('images/logo.webp') }}">
 

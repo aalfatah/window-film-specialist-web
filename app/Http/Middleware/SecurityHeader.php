@@ -19,6 +19,13 @@ class SecurityHeader
         $response->headers->set('X-XSS-Protection', '1; mode=block');
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
         $response->headers->set('Permissions-Policy', 'geolocation=(), microphone=(), camera=(), autoplay=(self)');
+
+        // Hanya cache halaman publik (bukan admin/auth)
+        if (!$request->is('fjfilm-portal*') && !$request->user()) {
+            $response->headers->set('X-LiteSpeed-Cache-Control', 'public,max-age=3600');
+        } else {
+            $response->headers->set('X-LiteSpeed-Cache-Control', 'no-cache');
+        }
         
         // 2. HSTS - Memaksa browser menggunakan HTTPS selama 1 tahun
         if (App::environment('production')) {

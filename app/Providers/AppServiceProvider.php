@@ -24,9 +24,9 @@ class AppServiceProvider extends ServiceProvider
         // }
 
         //production
-        // if (config('app.env') === 'production') {
-        //     URL::forceScheme('https');
-        // }
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
 
         // 1. Cek koneksi & tabel agar tidak crash saat migration/CLI
         if (!app()->runningInConsole() && Schema::hasTable('settings')) {

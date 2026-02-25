@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /fjfilm-portal
+Disallow: /admin
+Disallow: /login
+Allow: /
+
+Sitemap: https://fatihjayafilm.com/sitemap.xml
