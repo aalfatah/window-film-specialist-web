@@ -20,13 +20,13 @@ Sistem dibangun dengan arsitektur yang fokus pada kecepatan pemuatan (Lighthouse
 * **Database:** MySQL / PostgreSQL.
 * **Integration:** WhatsApp Cloud API Shortcut.
 
-## 🗺️ Development Roadmap
+## 🗺️ Development Roadmap ⏳
 | Phase | Task | Status |
 | :--- | :--- | :--- |
 | 1 | **Initial Setup & Documentation** | ✅ Done |
-| 2 | **Database Schema & Brand Assets** | ⏳ In Progress |
-| 3 | **UI/UX Implementation (Landing Page)** | 📅 Planned |
-| 4 | **Portfolio & Catalog Management** | 📅 Planned |
+| 2 | **Database Schema & Brand Assets** | ✅ Done |
+| 3 | **UI/UX Implementation (Landing Page)** | ✅ Done |
+| 4 | **Portfolio & Catalog Management** | ✅ Done |
 | 5 | **UAT & Deployment** | 📅 Planned |
 
 ## 🏗️ Project Structure Highlights
