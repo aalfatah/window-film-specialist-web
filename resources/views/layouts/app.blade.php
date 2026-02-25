@@ -279,6 +279,15 @@
                             </svg>
                             <span>+{{ $settings['whatsapp_number'] ?? '62...' }}</span>
                         </li>
+
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-brand-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <a href="mailto:{{ $settings['email'] ?? 'fatihjayafilm@gmail.com' }}" class="hover:text-brand-primary transition-colors">
+                                {{ $settings['email'] ?? 'email@belum-diatur.com' }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
