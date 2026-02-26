@@ -7,14 +7,26 @@
     <meta name="keywords" content="@yield('keyword', 'film banten, spesialis kaca film mobil banten, pasang kaca film gedung banten, kaca film panggilan banten')">
     <meta name="description" content="@yield('description', $settings['site_description'] ?? 'Pusat pemasangan kaca film mobil dan gedung terbaik di Banten. Melayani home service, tolak panas maksimal, bergaransi resmi. Hubungi via WhatsApp sekarang!')">
     <meta name="google-site-verification" content="r43NwsLdBblzuuRWtyvtuYVQ7EAppuZj1NsInjc_CGk" />
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Spesialis Kaca Film Mobil & Gedung | Fatih Jaya Film">
     <meta property="og:description" content="Layanan kaca film mobil dan gedung berkualitas">
+
+    <meta property="og:image" content="@yield('og_image', asset('images/og-marketing.webp'))">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'Fatih Jaya Film')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/og-marketing.webp'))">
 
     <link rel="icon" type="image/png" href="{{ asset('images/logo.webp') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script type="application/ld+json">
@@ -22,11 +34,11 @@
         "@context": "https://schema.org",
         "@type": "AutoPartsStore", 
         "name": "Fatih Jaya Film",
-        "image": "{{ asset('logo.png') }}",
+        "image": "{{ asset('images/logo.webp') }}",
         "@id": "{{ url('/') }}",
         "url": "{{ url('/') }}",
         "telephone": "+6283805060813", 
-        "priceRange": "$$",
+        "priceRange": "Rp",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Kp. Pondok Jati Selatan No.138 RT. 03 RW 13, Kel. Jurang Mangu Barat, Kec. Pondok Aren",
@@ -42,9 +54,7 @@
         },
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-            ],
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             "opens": "08:00",
             "closes": "17:00"
         },
