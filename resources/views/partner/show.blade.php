@@ -7,20 +7,20 @@
     <div x-data="{ activeSeries: 0 }">
         
         <div class="relative bg-slate-900 pt-28 pb-16 overflow-hidden">
-            <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
                 <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px]"></div>
-                <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]"></div>
             </div>
             
             <div class="container mx-auto px-6 relative z-10">
                 <div class="flex flex-col items-center text-center">
                     @if($partner->logo_path)
                         <div class="bg-white p-6 rounded-3xl shadow-2xl mb-8 transform -rotate-2 hover:rotate-0 transition duration-500">
-                            {{-- Gunakan operator ?? untuk fallback yang lebih bersih --}}
                             <img src="{{ $partner->logo_path ? asset('storage/'.$partner->logo_path) : asset('images/logo.webp') }}" 
-                                alt="{{ $partner->name }}" 
+                                alt="logo {{ $partner->name }}" 
                                 class="h-20 w-auto object-contain"
-                                onerror="this.src='{{ asset('images/logo.webp') }}'"> {{-- Pengaman ekstra jika file storage hilang fisik --}}
+                                width="200" height="80"
+                                fetchpriority="high"
+                                onerror="this.src='{{ asset('images/logo.webp') }}'">
                         </div>
                     @endif
                     
@@ -193,12 +193,13 @@
                     </div>
 
                     {{-- Content Tab --}}
-                    <div class="w-full lg:w-3/4 p-8 md:p-12 min-h-[600px]">
+                    <div class="w-full lg:w-3/4 p-8 md:p-12 min-h-[600px]" x-cloak>
                         @foreach($partner->products as $index => $product)
-                        <div x-show="activeSeries === {{ $index }}" 
+                        <div x-show="activeSeries === {{ $index }}"
                             x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="opacity-0 transform translate-x-4"
                             x-transition:enter-end="opacity-100 transform translate-x-0"
+                            x-cloak
                             class="space-y-8">
                             
                             <div>
@@ -248,7 +249,9 @@
                                 </h2>
                                 <div class="mb-6 w-full rounded-2xl overflow-hidden border border-gray-100 shadow-sm bg-gray-50">
                                     <img src="{{ asset('storage/' . $product->image_path) }}" 
-                                        alt="Gambar Produk {{ $product->name }}"
+                                        alt="Simulator {{ $product->name }}"
+                                        loading="lazy"
+                                        decoding="async"
                                         class="w-full h-auto object-contain hover:scale-105 transition-transform duration-500">
                                 </div>
                             @endif

@@ -303,7 +303,7 @@
 
                 <div class="h-48 rounded-xl overflow-hidden bg-gray-800">
                     <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d63455.019040037456!2d106.72131228382455!3d-6.2717930213563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sKp.%20Pondok%20Jati%20Selatan%20No.138%20RT.%2003%20RW%2013!5e0!3m2!1sid!2sid!4v1770889556430!5m2!1sid!2sid" class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d63455.019040037456!2d106.72131228382455!3d-6.2717930213563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sKp.%20Pondok%20Jati%20Selatan%20No.138%20RT.%2003%20RW%2013!5e0!3m2!1sid!2sid!4v1770889556430!5m2!1sid!2sid" title="Peta Lokasi Fatih Jaya Film" width="100%" height="400" class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 

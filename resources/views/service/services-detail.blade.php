@@ -173,7 +173,7 @@
                     <div class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 bg-white border border-gray-100">
                         <div class="aspect-[4/3] overflow-hidden">
                             <img src="{{ asset('storage/' . $portfolio->image_path) }}" 
-                                 alt="{{ $portfolio->title }}" 
+                                 alt="{{ $portfolio->title }}" loading="lazy" 
                                  class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                         </div>
                         <div class="p-4 relative">

@@ -7,7 +7,7 @@
     <section class="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden -mt-20">
         <div class="absolute inset-0 z-0">
             <img src="{{ asset('images/hero.webp') }}" fetchpriority="high" 
-                 class="w-full h-full object-cover" alt="Background Mobil Mewah">
+                 width="1920" height="1080" class="w-full h-full object-cover" alt="Background Mobil Mewah">
             <div class="absolute inset-0 bg-brand-dark/80 mix-blend-multiply"></div>
         </div>
 
@@ -55,7 +55,7 @@
                             <div class="flex items-center justify-center px-10">
                                 <div class="w-32 h-16 flex items-center justify-center">
                                     <img src="{{ $partner->logo_path ? asset('storage/' . $partner->logo_path) : asset('images/logo.webp') }}" 
-                                    alt="{{ $partner->name }}" 
+                                    alt="Logo {{ $partner->name }}" width="128" height="64" 
                                     class="max-h-12 w-auto object-contain filter grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
                                     onerror="this.src='{{ asset('images/logo.webp') }}'">
                                 </div>
@@ -304,10 +304,10 @@
                 </div>
 
                 <div class="hidden lg:flex gap-3">
-                    <button class="nav-prev w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all shadow-sm">
+                    <button aria-label="Slide Sebelumnya" class="nav-prev w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all shadow-sm">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
-                    <button class="nav-next w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all shadow-sm">
+                    <button aria-label="Slide Selanjutnya" class="nav-next w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all shadow-sm">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
                 </div>
@@ -319,8 +319,7 @@
                     <div class="swiper-slide service-item cat-{{ $service->category_id }}">
                         <div class="group flex flex-col h-full bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500">
                             <div class="relative h-60 rounded-xl overflow-hidden mb-6">
-                                <img src="{{ $service->image ? asset('storage/' . $service->image) : 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop' }}" 
-                                     class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                                <img src="{{ $service->image ? asset('storage/' . $service->image) : 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop&w=800' }}" alt="Layanan {{ $service->name }}" width="400" height="300" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                                 <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-md text-[10px] font-bold uppercase text-slate-800">
                                     {{ $service->category->name }}
                                 </div>
@@ -342,8 +341,7 @@
                                     </span>
                                 </div>
                                 
-                                <a href="{{ route('service.show', $service->slug) }}" 
-                                class="w-12 h-12 bg-slate-900 group-hover:bg-brand-primary text-white rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:rotate-45 shadow-lg shadow-slate-200">
+                                <a href="{{ route('service.show', $service->slug) }}" aria-label="Lihat detail layanan {{ $service->name }}" class="w-12 h-12 bg-slate-900 group-hover:bg-brand-primary text-white rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:rotate-45 shadow-lg shadow-slate-200">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                                     </svg>
@@ -470,10 +468,10 @@
         {
         "@context": "https://schema.org",
         "@type": "AutoBodyShop",
-        "name": "CV Fatih Jaya",
+        "name": "CV Fatih Jaya Film",
         "description": "{{ __('message.description_hero') }}",
         "image": "{{ asset('images/hero.webp') }}",
-        "telephone": "+628123456789"
+        "telephone": "+6283805060813"
         }
     </script>
 @endpush

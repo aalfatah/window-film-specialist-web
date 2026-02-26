@@ -68,12 +68,12 @@
 
             {{-- Bagian Kanan: Gambar --}}
             <div class="w-full lg:w-1/2 order-1 lg:order-2 px-4 md:px-0">
-                <div class="relative md:pt-24">
+                <div class="relative z-0 md:pt-24">
                     <div class="grid grid-cols-2 gap-4 mb-4 lg:mb-0 lg:absolute lg:top-0 lg:left-0 lg:right-0 lg:z-10 lg:px-8 lg:transform lg:-translate-y-1/4">
                         <div class="relative group">
                             <img src="{{ isset($randomPortfolios[0]) ? asset('storage/' . $randomPortfolios[0]->image_path) : 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop' }}" 
                                 class="rounded-xl border-4 border-blue-800 shadow-2xl h-32 md:h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                                alt="Portfolio 1">
+                                alt="{{ $about->heading }} - Main Visual">
                             <div class="absolute inset-0 rounded-xl bg-blue-500/10 group-hover:bg-transparent transition-colors"></div>
 
                         </div>
@@ -81,7 +81,7 @@
                         <div class="relative group">
                             <img src="{{ isset($randomPortfolios[1]) ? asset('storage/' . $randomPortfolios[1]->image_path) : 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop' }}" 
                                 class="rounded-xl border-4 border-blue-800 shadow-2xl h-32 md:h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                                alt="Portfolio 2">
+                                alt="{{ $about->heading }} - Main Visual">
                             <div class="absolute inset-0 rounded-xl bg-blue-500/10 group-hover:bg-transparent transition-colors"></div>
 
                         </div>
@@ -113,7 +113,7 @@
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                 </div>
                 <h3 class="text-2xl font-bold text-slate-900 mb-4">{{ __('message.vision_title')}}</h3>
-                <div class="text-slate-600 leading-relaxed rich-content prose prose-blue">
+                <div class="text-slate-600 leading-relaxed rich-content prose prose-blue list-outside">
                     {!! $about->vision !!}
                 </div>
             </div>
@@ -148,15 +148,13 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             @if(isset($about->values) && is_array($about->values))
                 @foreach($about->values as $value)
-                    <div class="bg-slate-800/50 backdrop-blur border border-white/5 p-8 rounded-2xl hover:bg-slate-800 transition-colors group">
-                        <div class="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center text-brand-primary mb-6 group-hover:scale-110 transition-transform">                    
-                            <div class="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center text-brand-primary mb-6 group-hover:scale-110 transition-transform overflow-hidden">
-                                @if(isset($value['icon']))
-                                    <img src="{{ asset('storage/' . $value['icon']) }}" alt="{{ $value['title'] }}" class="w-8 h-8 object-contain" fill="none" stroke="currentColor">
-                                @else
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                                @endif
-                            </div>                            
+                    <div class="bg-slate-800/50 backdrop-blur border border-white/5 p-8 rounded-2xl hover:bg-slate-800 transition-colors group">                                          
+                        <div class="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center text-brand-primary mb-6 group-hover:scale-110 transition-transform overflow-hidden">
+                            @if(isset($value['icon']))
+                                <img src="{{ asset('storage/' . $value['icon']) }}" alt="{{ $value['title'] }}" class="w-8 h-8 object-contain" fill="none" stroke="currentColor">
+                            @else
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            @endif
                         </div>
                         <h4 class="text-xl font-bold mb-3">{{ $value['title'] ?? '' }}</h4>
                         <p class="text-slate-400 text-sm leading-relaxed">{{ $value['description'] ?? '' }}</p>
