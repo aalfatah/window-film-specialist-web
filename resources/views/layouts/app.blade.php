@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', $settings['site_name'] ?? 'Fatih Jaya Film')</title>
-    <meta name="keywords" content="@yield('keyword', 'film banten, spesialis kaca film mobil banten, pasang kaca film gedung banten, kaca film panggilan banten')">
+    <title>
+        @hasSection('title')
+            @yield('title') - {{ $settings['site_name'] ?? 'Fatih Jaya Film' }}
+        @else
+            {{ $settings['site_name'] ?? 'Pusat Kaca Film Banten & Jabodetabek | Fatih Jaya Film' }}
+        @endif
+    </title>
+    <meta name="keywords" content="{{ $settings['site_keywords'] ?? 'kaca film banten, spesialis kaca film mobil, home service kaca film' }}">
     <meta name="description" content="@yield('description', $settings['site_description'] ?? 'Pusat pemasangan kaca film mobil dan gedung terbaik di Banten. Melayani home service, tolak panas maksimal, bergaransi resmi. Hubungi via WhatsApp sekarang!')">
     <meta name="google-site-verification" content="r43NwsLdBblzuuRWtyvtuYVQ7EAppuZj1NsInjc_CGk" />
     <link rel="canonical" href="{{ url()->current() }}">
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Spesialis Kaca Film Mobil & Gedung | Fatih Jaya Film">
-    <meta property="og:description" content="Layanan kaca film mobil dan gedung berkualitas">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:title" content="@yield('title', $settings['site_name'] ?? 'Spesialis Kaca Film Mobil & Gedung | Fatih Jaya Film')" />
+    <meta property="og:description" content="@yield('description', $settings['site_description'] ?? 'Layanan kaca film mobil dan gedung berkualitas')" />
 
-    <meta property="og:image" content="@yield('og_image', asset('images/og-marketing.webp'))">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-marketing.webp'))" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title', 'Fatih Jaya Film')">
@@ -307,8 +313,14 @@
                 </div>
             </div>
 
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                &copy; {{ date('Y') }} CV Fatih Jaya Film. All rights reserved.
+            <div class="border-t border-slate-800/80 pt-8 pb-4 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+                <div>
+                    &copy; {{ date('Y') }} <span class="text-slate-300 font-semibold tracking-wide">CV Fatih Jaya Film</span>. All rights reserved.
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-brand-primary transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-primary transition-colors">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>

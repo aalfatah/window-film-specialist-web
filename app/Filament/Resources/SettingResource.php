@@ -3,16 +3,16 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SettingResource\Pages;
-use App\Filament\Resources\SettingResource\RelationManagers;
+// use App\Filament\Resources\SettingResource\RelationManagers;
 use App\Models\Setting;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Components\Tab;
+// use Filament\Resources\Components\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+// use Illuminate\Database\Eloquent\Builder;
+// use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SettingResource extends Resource
 {
@@ -34,13 +34,18 @@ class SettingResource extends Resource
                         ->required()
                         ->placeholder('contoh: whatsapp_number atau alamat_kantor')
                         ->unique(ignoreRecord: true)
-                    ->helperText('Gunakan huruf kecil dan garis bawah (underscore) tanpa spasi.'),
+                        ->helperText('Gunakan huruf kecil dan garis bawah (underscore) tanpa spasi.'),
                 
                     Forms\Components\Textarea::make('value')
                         ->label('Isi/Nilai')
                         ->required()
                         ->rows(3)
-                        ->placeholder('Masukkan isi pengaturannya di sini Contoh: Untuk WA gunakan format 628123456789. Untuk alamat, masukkan alamat lengkap kantor.'),
+                        ->placeholder('Masukkan isi pengaturannya di sini Contoh: Untuk WA gunakan format 628123456789. Untuk alamat, masukkan alamat lengkap kantor.')
+                        ->helperText(fn (\Filament\Forms\Get $get) => 
+                            str_contains($get('key'), 'site_description') 
+                                ? 'Untuk SEO Deskripsi, usahakan tidak lebih dari 160 karakter agar tidak terpotong di Google.' 
+                                : 'Masukkan isi pengaturannya di sini.'
+                        ),
                 ])->columns(1),
             ]);
     }

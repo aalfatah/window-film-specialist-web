@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Home - ' . __('message.specialist_title'))
+@section('title', 'Pusat Kaca Film Mobil & Gedung Banten - Jabodetabek | ' . __('message.specialist_title'))
 @section('description', $settings['site_description'] ?? 'Layanan pemasangan kaca film mobil dan gedung spesialis di Banten. Tersedia layanan home service, tolak panas maksimal, garansi resmi.')
 @section('keywords', 'kaca film banten, kaca film mobil serang, kaca film cilegon, pasang kaca film panggilan')
 
