@@ -136,7 +136,13 @@ class HomeController extends Controller
     public function redirect() {
         // $settings = Setting::pluck('value', 'key'); // sudah di AppServiceProvider
         $phoneNumber = $settings['whatsapp_number'] ?? '6283805060813';
-        
-        return redirect()->to('https://wa.me/' . $phoneNumber);
+
+        $message = request()->query('text');
+        if (!$message) {
+            $message = "Halo Fatih Jaya Film, saya ingin konsultasi mengenai pemasangan kaca film.";
+        }
+        $waUrl = "https://wa.me/{$phoneNumber}?text=" . urlencode($message);
+
+        return redirect()->to($waUrl);
     }
 }
