@@ -10,7 +10,7 @@
 
     @foreach ($services as $service)
         <url>
-            <loc>{{ url('/service/' . $service->slug) }}</loc>
+            <loc>{{ url('/layanan/' . $service->slug) }}</loc>
             <lastmod>{{ $service->updated_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
@@ -19,7 +19,7 @@
 
     @foreach ($portfolios as $portfolio)
         <url>
-            <loc>{{ url('/portfolio/' . $portfolio->slug) }}</loc>
+            <loc>{{ url('/portofolio/' . $portfolio->slug) }}</loc>
             <lastmod>{{ $portfolio->updated_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.6</priority>
