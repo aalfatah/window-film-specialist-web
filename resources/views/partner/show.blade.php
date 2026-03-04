@@ -218,7 +218,9 @@
                                             <th class="px-4 py-4 text-center">TSER</th>
                                             <th class="px-4 py-4 text-center">IRR</th>
                                             <th class="px-4 py-4 text-center">UVR</th>
-                                            <th class="px-4 py-4 text-center bg-brand-primary/5 text-brand-primary">Glar. Red.</th>
+                                            @if($product->has_glare_reduction)
+                                                <th class="px-4 py-4 text-center bg-brand-primary/5 text-brand-primary">Glar. Red.</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-100">
@@ -229,9 +231,11 @@
                                             <td class="px-4 py-4 text-center">{{ $spec['tser'] }}%</td>
                                             <td class="px-4 py-4 text-center">{{ $spec['irr'] }}%</td>
                                             <td class="px-4 py-4 text-center">{{ $spec['uvr'] }}%</td>
-                                            <td class="px-4 py-4 text-center font-bold text-brand-primary bg-brand-primary/5">
-                                                {{ $spec['glare_reduction'] ?? '0' }}%
-                                            </td>
+                                            @if($product->has_glare_reduction)
+                                                <td class="px-4 py-4 text-center font-bold text-brand-primary bg-brand-primary/5">
+                                                    {{ !empty($spec['glare_reduction']) && $spec['glare_reduction'] > 0 ? $spec['glare_reduction'] . '%' : '-' }}
+                                                </td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>

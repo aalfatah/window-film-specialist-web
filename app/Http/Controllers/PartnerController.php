@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Partner;
 
 class PartnerController extends Controller
@@ -12,6 +11,11 @@ class PartnerController extends Controller
         $partner    = Partner::with(['products' =>  function($query){
             $query->where('is_active', true);
         }])->findOrFail($id);
+
+        $partner->products->each(function($product) {
+            $product->has_glare_reduction = collect($product->specifications)
+                ->contains(fn($spec) => !empty($spec['glare_reduction']) && $spec['glare_reduction'] > 0);
+        });
 
         $allPartners = Partner::where('id', '!=', $id)
                             ->where('is_active', true)
