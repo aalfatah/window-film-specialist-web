@@ -136,6 +136,7 @@ return [
     'brand_glossary_title' => 'Memahami Spesifikasi Kaca Film',
     'brand_glossary_desc' => 'Jangan hanya melihat kegelapan, pahami angka di balik perlindungan kenyamanan Anda.',
     'brand_spec_title' => 'Spesifikasi Tiap Series Kaca Film :name',
+    'brand_series' => 'Series Kaca Film :name :name_series',
     'brand_main_advantage' => 'Keunggulan Utama',
     'brand_other_brands' => 'Pilihan Merk Lainnya',
     'mobile_instruction' => 'Geser untuk melihat spesifikasi lengkap',

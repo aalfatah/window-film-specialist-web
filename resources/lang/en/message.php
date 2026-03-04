@@ -138,6 +138,7 @@ return [
     'brand_glossary_title' => 'Understanding Window Film Specifications',
     'brand_glossary_desc' => 'Dont just look at the darkness, understand the numbers behind your comfort protection.',
     'brand_spec_title' => ':name Window Film Series Specifications',
+    'brand_series' => 'Window Film Series :name :name_series',
     'brand_main_advantage' => 'Main Advantages',
     'brand_other_brands' => 'Other Brand Choices',
     'mobile_instruction' => 'Swipe to see full specifications',

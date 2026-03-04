@@ -203,7 +203,7 @@
                             class="space-y-8">
                             
                             <div>
-                                <h3 class="text-3xl font-semibold text-slate-800 mb-4">Series {{ $product->name }}</h3>
+                                <h3 class="text-3xl font-semibold text-slate-800 mb-4">{{ __('message.brand_series', ['name' => $partner->name, 'name_series' => $product->name]) }}</h3>
                                 <div class="prose prose-slate max-w-none text-gray-600">
                                     {!! $product->description !!}
                                 </div>
